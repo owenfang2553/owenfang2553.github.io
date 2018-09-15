@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fanguvw.xyz/"/>
-  <updated>2018-09-15T11:28:56.610Z</updated>
+  <updated>2018-09-15T11:54:26.869Z</updated>
   <id>http://fanguvw.xyz/</id>
   
   <author>
@@ -21,16 +21,15 @@
     <link href="http://fanguvw.xyz/2018/09/15/%E8%B4%AA%E5%90%83%E8%9B%87/"/>
     <id>http://fanguvw.xyz/2018/09/15/贪吃蛇/</id>
     <published>2018-09-15T11:24:59.000Z</published>
-    <updated>2018-09-15T11:28:56.610Z</updated>
+    <updated>2018-09-15T11:54:26.869Z</updated>
     
-    <content type="html"><![CDATA[<pre><code>## 利用Canvas与JavaScript实现贪吃蛇</code></pre>]]></content>
+    <content type="html"><![CDATA[<h2 id="利用Canvas与JavaScript实现贪吃蛇"><a href="#利用Canvas与JavaScript实现贪吃蛇" class="headerlink" title="利用Canvas与JavaScript实现贪吃蛇"></a>利用Canvas与JavaScript实现贪吃蛇</h2>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;pre&gt;&lt;code&gt;## 利用Canvas与JavaScript实现贪吃蛇
-&lt;/code&gt;&lt;/pre&gt;
+        &lt;h2 id=&quot;利用Canvas与JavaScript实现贪吃蛇&quot;&gt;&lt;a href=&quot;#利用Canvas与JavaScript实现贪吃蛇&quot; class=&quot;headerlink&quot; title=&quot;利用Canvas与JavaScript实现贪吃蛇&quot;&gt;&lt;/a&gt;利用Canvas与JavaS
       
     
     </summary>
