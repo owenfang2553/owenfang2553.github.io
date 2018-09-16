@@ -2098,7 +2098,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff1fff;
+  background: #45c69f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2227,6 +2227,12 @@ img:hover {
   border: none;
 }
 .footer-inner {
+  text-align: center;
+}
+.busuanzi-count {
+  text-align: center;
+}
+.copyright {
   text-align: center;
 }
 .with-love {
