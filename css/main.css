@@ -1092,6 +1092,7 @@ pre .javascript .function {
 .header {
   background: transparent;
   height: 110px;
+  line-height: 50%;
 }
 .header-inner {
   position: relative;
@@ -2222,7 +2223,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d28826;
+  background: #47ffba;
 }
 .links-of-blogroll {
   font-size: 13px;
