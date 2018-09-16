@@ -7,7 +7,7 @@ title: Fang'Blog
 subtitle: 心有猛虎，细嗅蔷薇。
 description: 个人网站
 keywords: 博客
-author: 方震
+author: Fang Zhen
 language: zh-Hans
 timezone:
 
@@ -68,7 +68,7 @@ category_map:
   Css: css
   Jquery: jquery
   NodeJs:  nodejs
-
+  Git: git
 tag_map:
   生活: live
   其他: other
@@ -79,7 +79,7 @@ tag_map:
   Css: css
   Jquery: jquery
   NodeJs:  nodejs
-
+  Git: git
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
