@@ -607,13 +607,13 @@ window.onload=function(){
           daysold='0'+daysold;
         }
         if(hrsold <10){
-          daysold='0'+daysold;
+          hrsold='0'+daysold;
         }
         if(minsold<10){
-          daysold='0'+daysold;
+          minsold='0'+daysold;
         }
         if(seconds<10){
-          daysold='0'+daysold;
+          seconds='0'+daysold;
         }
         document.getElementById("show").innerHTML = "本站已诞生" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds +
             "秒";
