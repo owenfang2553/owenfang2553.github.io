@@ -3,176 +3,24 @@ title: 原生JS实现回到页面顶部
 categories: JavaScript
 tags: JavaScript
 ---
-
-## 先上源代码(有空再写文)
-```javascript{.line-number}
-
- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        #div1 {
-            width: 100%;
-            height: 100%;
-            /* background: linear-gradient(to bottom, #CDDC39, rgb(36, 92, 212), green, red, gray, pink); */
-        }
-
-        #div1>div {
-            width: 100%;
-            height: 500px;
-            text-align: center;
-            font-size: 80px;
-        }
-
-        .demo1 {
-            background-color: red;
-        }
-
-        .demo2 {
-            background-color: green;
-        }
-
-        .demo3 {
-            background-color: grey;
-        }
-
-        .demo4 {
-            background-color: rgb(47, 0, 255);
-        }
-
-        .demo5 {
-            background-color: rgb(216, 34, 207);
-        }
-
-        .demo6 {
-            background-color: rgb(20, 162, 206);
-        }
-
-        .demo7 {
-            background-color: rgb(179, 129, 22);
-        }
-
-        .demo8 {
-            background-color: rgb(100, 196, 36);
-        }
-
-        .demo9 {
-            background-color: rgb(19, 241, 85);
-        }
-
-        .demo10 {
-            background-color: rgb(240, 40, 67);
-        }
-
-        span {
-            width: 30px;
-            height: 30px;
-            border: 5px solid white;
-            display: inline-block;
-            position: fixed;
-            right: 50px;
-            bottom: 150px;
-            border-radius: 50%;
-            background: linear-gradient(to top right, rgb(82, 55, 12), rgb(43, 128, 197));
-            cursor: pointer;
-            z-index: 2;
-            opacity: 0.5;
-            display: none;
-        }
-
-        span:hover {
-            opacity: 1;
-        }
-
-        i {
-            display: inline-block;
-            width: 60px;
-
-            height: 60px;
-            border: 5px solid white;
-            position: fixed;
-            right: 35px;
-            bottom: 135px;
-            border-radius: 50%;
-            background: linear-gradient(to top right, rgb(22, 134, 27), rgb(186, 218, 48));
-            display: none;
-        }
-
-        ul {
-            position: fixed;
-            left: 100px;
-            top: 30%;
-            width: 80px;
-            height: 237px;
-        }
-
-        ul>li {
-            cursor: pointer;
-            text-align: center;
-            margin-bottom: 1px;
-            background-color: rgb(86, 87, 82);
-            list-style: none;
-            border: 1px solid gray;
-            color: white
-        }
-
-        /* li:hover{
-            background-color: green;
-        } */
-    </style>
-</head>
-
-<body>
-    <div id='div1'>
-        <div class="demo1">一</div>
-        <div class="demo2">二</div>
-        <div class="demo3">三</div>
-        <div class="demo4">四</div>
-        <div class="demo5">五</div>
-        <div class="demo6">六</div>
-        <div class="demo7">七</div>
-        <div class="demo8">八</div>
-        <div class="demo9">九</div>
-        <div class="demo10">十</div>
-    </div>
-    <span></span>
-    <i></i>
-    <ul class="item">
-        <li id="demo1">one</li>
-        <li id="demo2">two</li>
-        <li id="demo3">three</li>
-        <li id="demo4">four</li>
-        <li id="demo5">five</li>
-        <li id="demo6">six</li>
-        <li id="demo7">seven</li>
-        <li id="demo8">eight</li>
-        <li id="demo9">nine</li>
-        <li id="demo10">ten</li>
-    </ul>
-    <script>
-        /*原生JS实现回到顶部动画分析：
+## 实现效果
+        1.右下角按钮回到顶部(点击后按钮消失，随即页面滑动到顶部;页面下拉距离超过一屏幕显示回到顶部按钮，反之按钮消失)
+        2.列表hover时显示随机颜色(利用时间委托机制)
+        3.点击左侧列表，页面滑动到对应模块(通过获取所点击列表的ID值滑动到对应CLASS值相同的模块)
+[点击查看源代码](https://github.com/FangFangZhenZhen/Example/blob/master/toTop.html)
+## 代码分析
+### 回到顶部按钮
             1.获取当前scrollTop距离（var distance=document.documentElement.scrollTop||document.body.scrollTop）
             2.总时间(var timer=500;单位：ms)  总共需要运动500ms
             3.频率( var frequency=10;单位：ms) 每10ms运动一次
             4.步长(var step=distance/timer*frequency)  每毫秒运动距离*频率=每一次运动所需步长
-        */
-        window.onload = function () {
+#### 回到顶部代码
+```javascript{.line-number}
             var span = document.getElementsByTagName('span')[0];
             var i = document.getElementsByTagName('i')[0];
             var timer = 1000; //总时间
             var frequency = 5; //频率
             window.onscroll = show;
-
             function show() {
                 var dis = document.documentElement.scrollTop || document.body.scrollTop;
                 var windis = window.screen.height; //屏幕分辨率高度
@@ -212,9 +60,13 @@ tags: JavaScript
                 }, frequency);
 
             });
-
-            //左侧LI部分(使用事件委托给LI加随机背景颜色)
-
+```
+### 列表随机颜色
+        1.利用事件委托机制给父级DIV加一个mouseover事件
+        2.mouseover在其子对象li上时触发事件，获取触发事件的目标(var elem = e.target;),对此目标进行操作
+        3.定义一个数组存放十六进制数，用于组成随机十六进制颜色，生成6个随机数(0-15)作为数组下标，将对应值存入一个空数组并转为字符串，即为十六进制颜色。
+#### 随机颜色代码
+```javascript{.line-number}
             var items = document.getElementsByTagName('li');
             var ul = document.getElementsByTagName('ul');
             // console.log(ul[0]);
@@ -239,11 +91,16 @@ tags: JavaScript
                 e = e || event;
                 var elem = e.target;
                 elem.style.background = null;
-            });
-
+            });           
+```
+### 滑动模块
+        1.与获取随机颜色原理相同，需要利用事件委托，通过给父元素DIV加点击事件获取目标事件
+        2.获取所点击目标的ID值，寻找模块中CLASS值与ID值相同的模块，并获取其距离顶部高度
+        3.需要设置过渡动画效果则与按钮部分相同需要设置运动总时间、总距离、频率等
+#### 滑动模块代码
+```javascriptP{.line-number}
             ul[0].addEventListener('click', function (e) {
                 e = e || event;
-
                 var liElem = e.target; //利用时间委托获取目标
                 var liName = liElem.getAttribute('id') //获取目标id值
                 var divName = document.getElementsByClassName(liName)[0]; //获取对应名称的DIV模块元素
@@ -257,14 +114,12 @@ tags: JavaScript
                 //定时器：每隔一定频率运动距离
                 var intn = window.setInterval(function () {
                     var curTop = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动时当前滚动条距离
-
                     if (curTop === top) {
                         window.clearInterval(intn); //当两者相同时清除定时器
                         return; //中断执行       
                     }
                     if (curTop > top) {
                         curTop -= stepgo; //使当前滚动条距离每隔frequency时间在当前距离基础上减去原始步长    
-
                     }
                     if (curTop < top) {
                         curTop += stepgo;
@@ -274,15 +129,9 @@ tags: JavaScript
                     document.body.scrollTop = curTop;
 
                 }, frequencytwo);
-
             });
-
-        }
-    </script>
-</body>
-
-</html>
 ```
+<code> 本人才疏学浅，暂时只能展示所知显浅部分，有误之处请留言告知 ◕‿-</code>
 
 
 
