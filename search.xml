@@ -27,9 +27,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[原生JS实现跑马灯]]></title>
+    <title><![CDATA[原生JS实现文字跑马灯]]></title>
     <url>%2F2018%2F09%2F17%2F%E8%B7%91%E9%A9%AC%E7%81%AF%2F</url>
-    <content type="text"><![CDATA[原生JS实现跑马灯]]></content>
+    <content type="text"><![CDATA[跑马灯思想所谓的跑马灯即类似于循环播放的通知告示等等效果,主要利用元素嵌套产生的横向滚动条来控制循环滚动。 源代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt; &lt;title&gt;跑马灯&lt;/title&gt; &lt;style&gt; #box&#123; background: pink; border: 1px dashed black; width: 608px; height: 20px; margin: 0 auto; &#125; #begin&#123; white-space: nowrap; float: left; &#125; #end&#123; white-space: nowrap; &#125; #movebox&#123; overflow: hidden; &#125; &lt;/style&gt;&lt;/head&gt;&lt;body&gt; &lt;div id=&quot;box&quot;&gt; &lt;div id=&quot;movebox&quot;&gt; &lt;div id=&quot;begin&quot;&gt; &lt;span style=&quot;color:red;&quot;&gt;感言: &lt;/span&gt;梯子的梯阶从来不是用来搁脚的，它只是让人们的脚放上一段时间，以便让别一只脚能够再往上登。 山路曲折盘旋，但毕竟朝着顶峰延伸。 只有登上山顶，才能看到那边的风光。 &lt;/div&gt; &lt;div id=&quot;end&quot;&gt; &lt;span style=&quot;color:red;&quot;&gt;感言: &lt;/span&gt;梯子的梯阶从来不是用来搁脚的，它只是让人们的脚放上一段时间，以便让别一只脚能够再往上登。 山路曲折盘旋，但毕竟朝着顶峰延伸。 只有登上山顶，才能看到那边的风光。 &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var movebox=document.getElementById(&apos;movebox&apos;); var begin=document.getElementById(&apos;begin&apos;); var beginWidth=window.getComputedStyle(begin,null).width; //获取元素宽度 自带单位（px） // console.log(beginWidth); //string类型 var beginw=beginWidth.replace(/px/,&quot;&quot;); //去除px单位 // console.log(beginw); var timer=window.setInterval(function()&#123; var curLeft=movebox.scrollLeft; //获取当前加之前的scrollleft值 movebox.scrollLeft=curLeft+1; //每隔10毫秒就使文字盒子水平滚动条在当前值上加1 var newLeft=movebox.scrollLeft; //获取当前加之后的left值console.log(newLeft); // 当scrollLeft值大于等于第一个div宽度时重置位置 if(newLeft&gt;=beginw)&#123; movebox.scrollLeft=0; &#125; &#125;,10)&lt;/script&gt;&lt;/html&gt;]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
