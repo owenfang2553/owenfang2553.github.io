@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="##">
+<meta name="description" content="JS编程技巧:惰性思想所谓的惰性思想可以简单地理解为:只执行一次可以搞定的事，绝不执行多次。 惰性思想代码块:12345678910111213141516var utils=(function()&amp;#123;    var flag=&amp;quot;getComputedStyle&amp;quot; in window; //若返回true则为标准浏览器，false为IE8及以下浏览器     funct">
 <meta name="keywords" content="Ajax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AJAX兼容与惰性思想">
 <meta property="og:url" content="http://fanguvw.xyz/2018/09/28/AJAX/index.html">
 <meta property="og:site_name" content="Fang&#39;Blog">
-<meta property="og:description" content="##">
+<meta property="og:description" content="JS编程技巧:惰性思想所谓的惰性思想可以简单地理解为:只执行一次可以搞定的事，绝不执行多次。 惰性思想代码块:12345678910111213141516var utils=(function()&amp;#123;    var flag=&amp;quot;getComputedStyle&amp;quot; in window; //若返回true则为标准浏览器，false为IE8及以下浏览器     funct">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-28T13:52:09.054Z">
+<meta property="og:updated_time" content="2018-09-28T14:21:32.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AJAX兼容与惰性思想">
-<meta name="twitter:description" content="##">
+<meta name="twitter:description" content="JS编程技巧:惰性思想所谓的惰性思想可以简单地理解为:只执行一次可以搞定的事，绝不执行多次。 惰性思想代码块:12345678910111213141516var utils=(function()&amp;#123;    var flag=&amp;quot;getComputedStyle&amp;quot; in window; //若返回true则为标准浏览器，false为IE8及以下浏览器     funct">
 
 
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  420
                 </span>
               
 
@@ -483,8 +483,10 @@
       
 
       
-        <p>## </p>
-
+        <h2 id="JS编程技巧-惰性思想"><a href="#JS编程技巧-惰性思想" class="headerlink" title="JS编程技巧:惰性思想"></a>JS编程技巧:惰性思想</h2><pre><code>所谓的惰性思想可以简单地理解为:只执行一次可以搞定的事，绝不执行多次。
+</code></pre><h3 id="惰性思想代码块"><a href="#惰性思想代码块" class="headerlink" title="惰性思想代码块:"></a>惰性思想代码块:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var utils=(function()&#123;</span><br><span class="line">    var flag=&quot;getComputedStyle&quot; in window; //若返回true则为标准浏览器，false为IE8及以下浏览器 </span><br><span class="line">    function getCss()&#123;</span><br><span class="line">        if(flag)&#123;  //因为以上已判断此浏览器结果并保存,直接使用flag而不需要用window.getComputedStyle判断</span><br><span class="line">            </span><br><span class="line">        &#125;else&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        getCss:getCss;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">utils.getCss(); </span><br><span class="line">utils.getCss();</span><br><span class="line">utils.getCss();</span><br></pre></td></tr></table></figure>
+<h2 id="惰性思想创建AJAX对象"><a href="#惰性思想创建AJAX对象" class="headerlink" title="惰性思想创建AJAX对象"></a>惰性思想创建AJAX对象</h2><pre><code>利用函数创建且兼容所有浏览器
+</code></pre><h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">var createXHR = function () &#123;</span><br><span class="line">    var xhr = null,</span><br><span class="line">        flag=false, //判断浏览器是否支持AJAX</span><br><span class="line">        // 定义一个数组用于存放创建AJAX对象的各种方法</span><br><span class="line">        arr = [</span><br><span class="line">            function () &#123;</span><br><span class="line">                return new XMLHttpRequest(); //只兼容IE7及以上 </span><br><span class="line">            &#125;,</span><br><span class="line">            // 以下三种方法兼容低版本浏览器</span><br><span class="line">            function () &#123;</span><br><span class="line">                return new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">            &#125;,</span><br><span class="line">            function () &#123;</span><br><span class="line">                return new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);</span><br><span class="line">            &#125;,</span><br><span class="line">            function () &#123;</span><br><span class="line">                return new ActiveXObject(&quot;Msxml3.XMLHTTP&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        ];</span><br><span class="line">    //  遍历这个数组中的小方法,当可用时即可取用</span><br><span class="line">    for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        var curFn = arr[i]; //获取当前遍历到的小方法</span><br><span class="line">        try &#123;</span><br><span class="line">            // 本次循环获取的方法执行没有报错：说明此方法可用，下次直接执行此小方法即可=&gt;将createXHR重写为此小方法</span><br><span class="line">            xhr = curFn();</span><br><span class="line">            createXHR = curFn;    </span><br><span class="line">            flag = true; //浏览器可兼容AJAX则为true;</span><br><span class="line">            break; //结束循环</span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">            //本次获取的方法执行报错则继续循环遍历下一个方法</span><br><span class="line">        &#125;</span><br><span class="line">        if (!flag) &#123; </span><br><span class="line">            throw new Error(&quot;please updata your brower&quot;); //浏览器不支持AJAX时抛出错误</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return xhr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -584,8 +586,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/28/AJAX兼容/" rel="next" title="AJAX兼容与惰性思想">
-                <i class="fa fa-chevron-left"></i> AJAX兼容与惰性思想
+              <a href="/2018/09/17/旋转的八卦图/" rel="next" title="旋转的八卦图">
+                <i class="fa fa-chevron-left"></i> 旋转的八卦图
               </a>
             
           </div>
@@ -655,8 +657,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -675,7 +686,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -781,6 +792,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS编程技巧-惰性思想"><span class="nav-number">1.</span> <span class="nav-text">JS编程技巧:惰性思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#惰性思想代码块"><span class="nav-number">1.1.</span> <span class="nav-text">惰性思想代码块:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#惰性思想创建AJAX对象"><span class="nav-number">2.</span> <span class="nav-text">惰性思想创建AJAX对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">2.1.</span> <span class="nav-text">源代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

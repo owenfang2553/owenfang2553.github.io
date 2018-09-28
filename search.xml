@@ -3,17 +3,6 @@
   <entry>
     <title><![CDATA[AJAX兼容与惰性思想]]></title>
     <url>%2F2018%2F09%2F28%2FAJAX%2F</url>
-    <content type="text"><![CDATA[##]]></content>
-      <categories>
-        <category>Ajax</category>
-      </categories>
-      <tags>
-        <tag>Ajax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[AJAX兼容与惰性思想]]></title>
-    <url>%2F2018%2F09%2F28%2FAJAX%E5%85%BC%E5%AE%B9%2F</url>
     <content type="text"><![CDATA[JS编程技巧:惰性思想所谓的惰性思想可以简单地理解为:只执行一次可以搞定的事，绝不执行多次。 惰性思想代码块:12345678910111213141516var utils=(function()&#123; var flag=&quot;getComputedStyle&quot; in window; //若返回true则为标准浏览器，false为IE8及以下浏览器 function getCss()&#123; if(flag)&#123; //因为以上已判断此浏览器结果并保存,直接使用flag而不需要用window.getComputedStyle判断 &#125;else&#123; &#125; &#125; return&#123; getCss:getCss; &#125;&#125;)()utils.getCss(); utils.getCss();utils.getCss(); 惰性思想创建AJAX对象利用函数创建且兼容所有浏览器 源代码1234567891011121314151617181920212223242526272829303132333435363738var createXHR = function () &#123; var xhr = null, flag=false, //判断浏览器是否支持AJAX // 定义一个数组用于存放创建AJAX对象的各种方法 arr = [ function () &#123; return new XMLHttpRequest(); //只兼容IE7及以上 &#125;, // 以下三种方法兼容低版本浏览器 function () &#123; return new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;); &#125;, function () &#123; return new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;); &#125;, function () &#123; return new ActiveXObject(&quot;Msxml3.XMLHTTP&quot;); &#125; ]; // 遍历这个数组中的小方法,当可用时即可取用 for (var i = 0; i &lt; arr.length; i++) &#123; var curFn = arr[i]; //获取当前遍历到的小方法 try &#123; // 本次循环获取的方法执行没有报错：说明此方法可用，下次直接执行此小方法即可=&gt;将createXHR重写为此小方法 xhr = curFn(); createXHR = curFn; flag = true; //浏览器可兼容AJAX则为true; break; //结束循环 &#125; catch (e) &#123; //本次获取的方法执行报错则继续循环遍历下一个方法 &#125; if (!flag) &#123; throw new Error(&quot;please updata your brower&quot;); //浏览器不支持AJAX时抛出错误 &#125; &#125; return xhr;&#125;;]]></content>
       <categories>
         <category>Ajax</category>
