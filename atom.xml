@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fanguvw.xyz/"/>
-  <updated>2018-10-02T13:49:56.303Z</updated>
+  <updated>2018-10-07T06:52:11.793Z</updated>
   <id>http://fanguvw.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AJAX中的HTTP请求方式</title>
+    <link href="http://fanguvw.xyz/2018/10/07/HTTP-METHOD/"/>
+    <id>http://fanguvw.xyz/2018/10/07/HTTP-METHOD/</id>
+    <published>2018-10-07T06:24:25.000Z</published>
+    <updated>2018-10-07T06:52:11.793Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="HTTP-METHOD"><a href="#HTTP-METHOD" class="headerlink" title="HTTP METHOD"></a>HTTP METHOD</h2><pre><code>HTTP常用的几种请求方式：1.GET2.POST3.PUT4.DELETE5.HEAD</code></pre><p>这些请求方式不管是哪一种都可以向服务器请求获取数据或者传递数据，从本质上无区别，只是在行业内被开发人员约定俗成各自不同的用处，并非是一种标准。</p><h2 id="方法分析"><a href="#方法分析" class="headerlink" title="方法分析"></a>方法分析</h2><pre><code>1.GET:一般用于从服务器获取数据（给服务器数据少，获取数据多，此方法最为常用）2.POST:一般用于推送数据给服务器（给服务器多，获取数据少）3.PUT：一般用于向服务器传递资源文件（上传图片功能）4.DELETE:一般用于删除服务器资源文件5.HEAD:一般用于获取服务器响应头信息</code></pre><h2 id="GET-PK-POST"><a href="#GET-PK-POST" class="headerlink" title="GET PK POST"></a>GET PK POST</h2><p>传递方式：</p><pre><code>GET:向服务器传递内容一般通过&quot;URL问号传参方式&quot;xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=4&quot;,true);POST:向服务器传递内容一般通过&quot;请求主体的方式&quot;xhr.open(&quot;POST&quot;,&quot;/postlist&quot;,true);xhr.send(&apos;{&quot;name&quot;:&quot;fang&quot;,&quot;age&quot;:&quot;22&quot;}&apos;); //传递的为JSON对象格式的字符串</code></pre><p>大小问题：</p><pre><code>GET请求传递给服务器的内容存在大小限制，而POST理论上无限制（实际一般最大2MB）原因：GET是通过URL传参形式，而每个浏览器对URL长度有限制，谷歌8KB，火狐7KB，IE2KB,所以当兼容IE情况下最大上传2KB大小内容。</code></pre><p>缓存问题：</p><pre><code>GET请求会出现缓存 =&gt; 因为请求地址与传参相同（不一定是304），POST请求无缓存在项目中我们的GET请求一般不允许出现缓存 =&gt; “清除缓存” =&gt; 改变URL =&gt; 在URL末尾追加一个随机数 =&gt; xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=5&amp;_=&quot;+Math.random(),true);</code></pre><p>安全问题：</p><pre><code>一般来说GET不安全（URL传参）,而POST相对安全实际当攻击者向攻击时都不安全</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;HTTP-METHOD&quot;&gt;&lt;a href=&quot;#HTTP-METHOD&quot; class=&quot;headerlink&quot; title=&quot;HTTP METHOD&quot;&gt;&lt;/a&gt;HTTP METHOD&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;HTTP常用的几种请求方式：
+1.GET
+2.POS
+      
+    
+    </summary>
+    
+      <category term="AJAX" scheme="http://fanguvw.xyz/categories/AJAX/"/>
+    
+    
+      <category term="AJAX" scheme="http://fanguvw.xyz/tags/AJAX/"/>
+    
+  </entry>
   
   <entry>
     <title>观察者模式（发布/订阅模式）</title>
@@ -92,9 +119,9 @@
       <category term="Css" scheme="http://fanguvw.xyz/categories/canvas/jacascript/css/"/>
     
     
-      <category term="JavaScript" scheme="http://fanguvw.xyz/tags/jacascript/"/>
-    
       <category term="Canvas" scheme="http://fanguvw.xyz/tags/canvas/"/>
+    
+      <category term="JavaScript" scheme="http://fanguvw.xyz/tags/jacascript/"/>
     
       <category term="Css" scheme="http://fanguvw.xyz/tags/css/"/>
     
@@ -150,9 +177,9 @@
       <category term="JavaScript" scheme="http://fanguvw.xyz/categories/canvas/jacascript/"/>
     
     
-      <category term="JavaScript" scheme="http://fanguvw.xyz/tags/jacascript/"/>
-    
       <category term="Canvas" scheme="http://fanguvw.xyz/tags/canvas/"/>
+    
+      <category term="JavaScript" scheme="http://fanguvw.xyz/tags/jacascript/"/>
     
   </entry>
   

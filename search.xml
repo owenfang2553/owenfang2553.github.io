@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[AJAX中的HTTP请求方式]]></title>
+    <url>%2F2018%2F10%2F07%2FHTTP-METHOD%2F</url>
+    <content type="text"><![CDATA[HTTP METHODHTTP常用的几种请求方式： 1.GET 2.POST 3.PUT 4.DELETE 5.HEAD 这些请求方式不管是哪一种都可以向服务器请求获取数据或者传递数据，从本质上无区别，只是在行业内被开发人员约定俗成各自不同的用处，并非是一种标准。 方法分析1.GET:一般用于从服务器获取数据（给服务器数据少，获取数据多，此方法最为常用） 2.POST:一般用于推送数据给服务器（给服务器多，获取数据少） 3.PUT：一般用于向服务器传递资源文件（上传图片功能） 4.DELETE:一般用于删除服务器资源文件 5.HEAD:一般用于获取服务器响应头信息 GET PK POST传递方式： GET:向服务器传递内容一般通过&quot;URL问号传参方式&quot; xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=4&quot;,true); POST:向服务器传递内容一般通过&quot;请求主体的方式&quot; xhr.open(&quot;POST&quot;,&quot;/postlist&quot;,true); xhr.send(&apos;{&quot;name&quot;:&quot;fang&quot;,&quot;age&quot;:&quot;22&quot;}&apos;); //传递的为JSON对象格式的字符串 大小问题： GET请求传递给服务器的内容存在大小限制，而POST理论上无限制（实际一般最大2MB） 原因：GET是通过URL传参形式，而每个浏览器对URL长度有限制，谷歌8KB，火狐7KB，IE2KB,所以当兼容IE情况下最大上传2KB大小内容。 缓存问题： GET请求会出现缓存 =&gt; 因为请求地址与传参相同（不一定是304），POST请求无缓存 在项目中我们的GET请求一般不允许出现缓存 =&gt; “清除缓存” =&gt; 改变URL =&gt; 在URL末尾追加一个随机数 =&gt; xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=5&amp;_=&quot;+Math.random(),true); 安全问题： 一般来说GET不安全（URL传参）,而POST相对安全 实际当攻击者向攻击时都不安全]]></content>
+      <categories>
+        <category>AJAX</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[观察者模式（发布/订阅模式）]]></title>
     <url>%2F2018%2F10%2F02%2F%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[观察者模式是软件设计模式的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。 说的简单些，就是在数据发生改变时，对应的处理函数自动执行。维基的定义中涉及到了主动发出通知，按照这种方式，在angularJS中的事件广播更是中规中矩，但是其缺点是代码的可维护性较差。那么如果不进行主动通知，而是在进行对象属性值设置时，调用相关的处理函数，也可达到同等效果。 源代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374// 页面加载时自动执行 var Observer = (function() &#123; // 为了防止消息被外部修改，将消息变量设为私有变量 var _message = &#123;&#125;; return &#123; // 注册信息接口 regist: function(type, fn) &#123; // 判断消息类型是否存在 if (typeof _message[type] === &apos;undefined&apos;) &#123; // 将动作推送到消息队列中执行 _message[type] = [fn]; &#125; else &#123; // 将动作方法推入到对应类型的队列中 _message[type].push(fn); &#125; &#125;, // 发布消息接口 fire: function(type, args) &#123; //如果该消息没有被注册，直接结束 if (!_message[type]) return; var events = &#123; type: type, //消息的类型 args: args || &#123;&#125; //消息所携带的数据 &#125; i = 0, //消息循环变量 len = _message[type].length; //消息动作的长度 for (; i &lt; len; i++) &#123; //依次执行注册消息所对应的动作序列 _message[type][i].call(this, events); &#125; &#125;, // 移除信息接口 remove: function(type, fn) &#123; // 如果消息队列存在 if (_message[type] instanceof Array) &#123; //从最后一个消息动作开始遍历 var i = _message[type].length - 1; for (; i &gt;= 0; i--) &#123; _message[type][i] === fn &amp;&amp; _message[type].splice(i, 1); &#125; &#125; &#125; &#125; &#125;)(); //订阅消息 Observer.regist(&apos;news&apos;, function(e) &#123; console.log(e.type, e.args.msg); &#125;); Observer.regist(&apos;weather&apos;, function(e) &#123; console.log(e.args.title); console.log(e.args.msg); &#125;); Observer.regist(&apos;weather&apos;, function(e) &#123; console.log(e.args.title); console.log(e.args.msg); &#125;); //发布消息 Observer.fire(&apos;news&apos;, &#123; msg: &apos;新闻主体内容&apos; &#125;); Observer.fire(&apos;weather&apos;, &#123; title: &apos;杭州天气&apos;, msg: &apos;晴转多云 21-36°C&apos; &#125;); Observer.fire(&apos;weather&apos;, &#123; title: &apos;上海天气&apos;, msg: &apos;晴转多云 22-36°C&apos; &#125;);]]></content>
@@ -32,8 +43,8 @@
         <category>Css</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>Canvas</tag>
+        <tag>JavaScript</tag>
         <tag>Css</tag>
       </tags>
   </entry>
@@ -57,8 +68,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>Canvas</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
