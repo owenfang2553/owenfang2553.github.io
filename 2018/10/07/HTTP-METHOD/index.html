@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="Fang&#39;Blog">
 <meta property="og:description" content="HTTP METHODHTTP常用的几种请求方式： 1.GET 2.POST 3.PUT 4.DELETE 5.HEAD 这些请求方式不管是哪一种都可以向服务器请求获取数据或者传递数据，从本质上无区别，只是在行业内被开发人员约定俗成各自不同的用处，并非是一种标准。 方法分析1.GET:一般用于从服务器获取数据（给服务器数据少，获取数据多，此方法最为常用） 2.POST:一般用于推送数据给服务器（给">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-07T06:52:11.793Z">
+<meta property="og:updated_time" content="2018-10-07T06:55:32.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AJAX中的HTTP请求方式">
 <meta name="twitter:description" content="HTTP METHODHTTP常用的几种请求方式： 1.GET 2.POST 3.PUT 4.DELETE 5.HEAD 这些请求方式不管是哪一种都可以向服务器请求获取数据或者传递数据，从本质上无区别，只是在行业内被开发人员约定俗成各自不同的用处，并非是一种标准。 方法分析1.GET:一般用于从服务器获取数据（给服务器数据少，获取数据多，此方法最为常用） 2.POST:一般用于推送数据给服务器（给">
@@ -151,7 +151,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":true,"transition":{"post_block":"shrinkIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -510,7 +510,7 @@ xhr.send(&apos;{&quot;name&quot;:&quot;fang&quot;,&quot;age&quot;:&quot;22&quot;
 在项目中我们的GET请求一般不允许出现缓存 =&gt; “清除缓存” =&gt; 改变URL =&gt; 在URL末尾追加一个随机数 =&gt; xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=5&amp;_=&quot;+Math.random(),true);
 </code></pre><p>安全问题：</p>
 <pre><code>一般来说GET不安全（URL传参）,而POST相对安全
-实际当攻击者向攻击时都不安全
+实际当攻击者想攻击时都不安全
 </code></pre>
       
     </div>
@@ -676,6 +676,8 @@ xhr.send(&apos;{&quot;name&quot;:&quot;fang&quot;,&quot;age&quot;:&quot;22&quot;
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
     
     <div class="sidebar-inner">
   
@@ -970,6 +972,8 @@ window.onload=function(){
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -1518,6 +1522,9 @@ window.onload=function(){
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
 
   
 
