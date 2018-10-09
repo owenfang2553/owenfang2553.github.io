@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[同步（sync）与异步(async)编程]]></title>
+    <url>%2F2018%2F10%2F09%2F%E5%90%8C%E6%AD%A5%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[同步与异步同步：在进程中任务未结束时需等待结束才能执行下一个任务 异步：在进程中任务未结束但在等待的过程中可先去执行下一个任务 js是属于单线程，所以我们最好采用异步编程 单线程：所有的任务由一个线程来完成 多线程：多个任务可分配给不同的线程来完成 js中的异步编程：1.定时器属于异步编程（到时间点后才开始执行，当时间设置为0也不会立即执行=&gt; 浏览器有延迟时间：谷歌：5~6ms IE：10~13ms） 2.事件绑定属于异步编程（事件触发时才执行） 3.回调函数也可理解为异步编程 4.在AJAX中可以使用异步编程 同步异步案例理解1234567891011121314151617181920212223242526272829303132333435//案例一var count = 0;window.setTimeout(function () &#123; count++; console.log(count);//后输出=&gt;1 1000ms后&#125;, 1000);console.log(count); //先输出=&gt;0//案例二var count = 0;window.setTimeout(function () &#123; count++; console.log(count);//后输出=&gt;1 不会立马执行，需要等待一段时间 谷歌：5~6ms IE：10~13ms &#125;,0);console.log(count); //先输出=&gt;0//案例三 var count = 0;window.setTimeout(function () &#123; count++; console.log(count); //不输出：因为线程一直被死循环占用，定时器需要一直等待着&#125;,1000);console.log(count); //先输出=&gt;0while(1)&#123; //死循环&#125;//案例四window.setTimeout(function () &#123; console.log(&apos;a&apos;); //再输出a&#125;,10);window.setTimeout(function () &#123; console.log(&apos;b&apos;); //先输出b 因为在等待队列中是按时间排序的 时间短的先执行 &#125;,6);var i=0;while(i&lt;1000000000)&#123; i++;&#125; AJAX中的同步与异步编程AJAX中的同步：当AJAX任务开始时（xhr.send），一直需要到 READY STATE===4的时候任务才结束，才可以执行下一个任务 AJAX中的异步：当AJAX任务开始时（xhr.send），不需要等待READY STATE===4,期间可以执行其他任务，当READY STATE===时，再做相关操作 AJAX中的三部曲12345678910var xhr=new XMLHttpRequest();xhr.open(&quot;GET&quot;,&quot;/list&quot;,true);/* xhr.onreadystatechange=function()&#123; if(xhr.readystate===4&amp;&amp;xhr.status===200)&#123; ...... &#125; &#125; */xhr.send(null);//只有send之后AJAX任务（向服务器发送请求）才开始 AJAX中案例理解12345678910111213141516171819202122232425262728293031//案例一var xhr=new XMLHttpRequest(); //readyState===0xhr.open(&quot;GET&quot;,&quot;./a.json&quot;,true); //readyState===1xhr.onreadystatechange=function()&#123; //绑定事件 console.log(xhr.readyState); //输出： 2 3 4&#125;xhr.send(null); //任务开始 1-&gt;2-&gt;3-&gt;4 //案例二var xhr=new XMLHttpRequest(); //readyState===0xhr.open(&quot;GET&quot;,&quot;./a.json&quot;,false); //readyState===1xhr.onreadystatechange=function()&#123; //绑定事件 console.log(xhr.readyState); //输出：4 （同步） 当请求结束 readyState==4时才输出 ajax本身是异步方法 （xhr保存开始时值1，当任务结束时值为4 状态码由1-&gt;4 输出4）&#125;xhr.send(null); //任务开始 1-&gt;2-&gt;3-&gt;4 //案例三var xhr=new XMLHttpRequest(); //readyState===0xhr.open(&quot;GET&quot;,&quot;./a.json&quot;,true); //readyState===1xhr.send(null); //任务开始 1-&gt;2-&gt;3-&gt;4 xhr.onreadystatechange=function()&#123; //绑定事件 console.log(xhr.readyState); //输出：2 3 4 （异步-&gt;不需要等待状态码为4 -&gt;直接执行以下任务）&#125;//案例四var xhr=new XMLHttpRequest(); //readyState===0xhr.open(&quot;GET&quot;,&quot;./a.json&quot;,false); //readyState===1xhr.send(null); //任务开始 1-&gt;2-&gt;3-&gt;4 xhr.onreadystatechange=function()&#123; //绑定事件 console.log(xhr.readyState); // 无输出 （同步-&gt;状态码已为4时才添加事件-&gt;状态码不再改变触发事件-&gt;无输出）&#125; 获取服务器时间状态码（readyState）为2时就需进行的操作（需异步） =&gt;如获取响应头中的服务器时间（Date）=&gt; 可应用于电商网站倒计时抢购（若用客户端时间则用户可更改客户端时间） 虽状态码为4时可获取服务器响应头中的时间，但状态码从2-&gt;3-&gt;4占大量时间 当状态码为2时获取可节省时间 减小时间误差 12345678910111213141516171819202122var xhr = new XMLHttpRequest(); //readyState===0xhr.open(&quot;HEAD&quot;, &quot;./a.json&quot;, true); //readyState===1 xhr.setRequestHeader(&quot;H51806&quot;,&quot;fang&quot;); //客户端设置请求头信息到a.json上-&gt;服务器端获取 （需写在open方法后）xhr.timeout=&quot;1000&quot;;//设置AJAX请求的超时时间（若为同步编程，请求时间超过设置时间时放弃请求，执行下列任务）/* 常用HTTP方法： GET:一般用于从服务器获取数据（给服务器数据少，获取数据多，此方法最常用）-&gt;问号传参 POST:一般用于推送数据给服务器（给服务器多，获取少） -&gt;请求主体传参 PUT:一般用于给服务器增加资源文件（上传图片功能） DELETE:一般用于从服务器删除资源文件 HEAD:一般用于获取服务器响应头信息 这些请求方式不管是哪一种都可以向服务器获得或者传递数据，且从本质意义上无区别，只是行业内被开发者人约定俗成了各自不同的用处，并非标准。*/xhr.onreadystatechange = function () &#123; //绑定事件 if (xhr.readyState === 2) &#123; // xhr.getResponseHeader=&gt;客户端获取服务器的响应头信息 var time = xhr.getResponseHeader(&quot;Date&quot;); console.log(time); //输出的为格林尼治时间（GMT） console.log(new Date(time)); //输出为中国标准时间（GMT+0800） &#125; &#125;xhr.send(null);]]></content>
+      <categories>
+        <category>AJAX</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[AJAX中的HTTP请求方式]]></title>
     <url>%2F2018%2F10%2F07%2FHTTP-METHOD%2F</url>
     <content type="text"><![CDATA[HTTP METHODHTTP常用的几种请求方式： 1.GET 2.POST 3.PUT 4.DELETE 5.HEAD 这些请求方式不管是哪一种都可以向服务器请求获取数据或者传递数据，从本质上无区别，只是在行业内被开发人员约定俗成各自不同的用处，并非是一种标准。 方法分析1.GET:一般用于从服务器获取数据（给服务器数据少，获取数据多，此方法最为常用） 2.POST:一般用于推送数据给服务器（给服务器多，获取数据少） 3.PUT：一般用于向服务器传递资源文件（上传图片功能） 4.DELETE:一般用于删除服务器资源文件 5.HEAD:一般用于获取服务器响应头信息 GET PK POST传递方式： GET:向服务器传递内容一般通过&quot;URL问号传参方式&quot; xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=4&quot;,true); POST:向服务器传递内容一般通过&quot;请求主体的方式&quot; xhr.open(&quot;POST&quot;,&quot;/postlist&quot;,true); xhr.send(&apos;{&quot;name&quot;:&quot;fang&quot;,&quot;age&quot;:&quot;22&quot;}&apos;); //传递的为JSON对象格式的字符串 大小问题： GET请求传递给服务器的内容存在大小限制，而POST理论上无限制（实际一般最大2MB） 原因：GET是通过URL传参形式，而每个浏览器对URL长度有限制，谷歌8KB，火狐7KB，IE2KB,所以当兼容IE情况下最大上传2KB大小内容。 缓存问题： GET请求会出现缓存 =&gt; 因为请求地址与传参相同（不一定是304），POST请求无缓存 在项目中我们的GET请求一般不允许出现缓存 =&gt; “清除缓存” =&gt; 改变URL =&gt; 在URL末尾追加一个随机数 =&gt; xhr.open(&quot;GET&quot;,&quot;/getlist?a=2&amp;num=5&amp;_=&quot;+Math.random(),true); 安全问题： 一般来说GET不安全（URL传参）,而POST相对安全 实际当攻击者想攻击时都不安全]]></content>
@@ -43,8 +54,8 @@
         <category>Css</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>Canvas</tag>
+        <tag>JavaScript</tag>
         <tag>Css</tag>
       </tags>
   </entry>
@@ -68,8 +79,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>Canvas</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
