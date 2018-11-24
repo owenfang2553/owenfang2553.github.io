@@ -16,9 +16,9 @@ date: 2018-09-15 14:22:23
 * 天马行空
 
 ### 关于我
-* 暂为前端技术初学者
+* 前端技术热爱者
 * 95后 浙江人 爱折腾
-* 热爱美好事物
+* 热爱生活
 * 联系方式：zhen-fang@outlook.com
 
 ![Image d](https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/img.jpg)
