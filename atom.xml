@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fanguvw.xyz/"/>
-  <updated>2018-10-17T14:19:54.462Z</updated>
+  <updated>2018-11-25T13:56:56.347Z</updated>
   <id>http://fanguvw.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IIS实现局域网联调</title>
+    <link href="http://fanguvw.xyz/2018/11/25/IIS%E5%AE%9E%E7%8E%B0%E5%B1%80%E5%9F%9F%E7%BD%91%E8%81%94%E8%B0%83/"/>
+    <id>http://fanguvw.xyz/2018/11/25/IIS实现局域网联调/</id>
+    <published>2018-11-25T12:58:33.000Z</published>
+    <updated>2018-11-25T13:56:56.347Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="建立局域网络"><a href="#建立局域网络" class="headerlink" title="建立局域网络"></a>建立局域网络</h2><pre><code>1.手机打开热点2.使你的笔记本连接至手机热点3.这时手机与笔记本就已经处于同一个局域网内了</code></pre><h2 id="基于IIS建立本地项目服务"><a href="#基于IIS建立本地项目服务" class="headerlink" title="基于IIS建立本地项目服务"></a>基于IIS建立本地项目服务</h2><pre><code>1.打开控制面板2.点击程序3.点击启用或关闭Windows功能4.选中Internet Information Services(IIS)--不必全选默认方块状态就可以了5.确定后会进行功能应用</code></pre><h2 id="IIS管理器基础设置"><a href="#IIS管理器基础设置" class="headerlink" title="IIS管理器基础设置"></a>IIS管理器基础设置</h2><pre><code>1.本地搜索并打开IIS管理器2.在右侧本地服务的网站目录上右键添加网站3.网站名称随意,物理路径选择你的本地项目地址4.IP地址为手机热点局域网地址(IP查看方式:运行CMD打开命令行-&gt;输入ipconfig-&gt;复制IPv4地址)5.端口号范围为1~65535(http默认80,https默认443)6.主机名为域名,可不填7.启动服务后即可在PC端与手机端输入ip地址与端口号同时浏览网站进行调试</code></pre><h2 id="基本流程图"><a href="#基本流程图" class="headerlink" title="基本流程图"></a>基本流程图</h2><p><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/IIS.png" alt="IIS流程图"></p><h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><ul><li>PC端<br><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PC.png" alt="PC"></li><li>手机端<br><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PHONE.jpg" alt="PHONE"></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;建立局域网络&quot;&gt;&lt;a href=&quot;#建立局域网络&quot; class=&quot;headerlink&quot; title=&quot;建立局域网络&quot;&gt;&lt;/a&gt;建立局域网络&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;1.手机打开热点
+2.使你的笔记本连接至手机热点
+3.这时手机与笔记本就已经处于同一个局域网
+      
+    
+    </summary>
+    
+      <category term="IIS" scheme="http://fanguvw.xyz/categories/IIS/"/>
+    
+    
+      <category term="IIS" scheme="http://fanguvw.xyz/tags/IIS/"/>
+    
+  </entry>
   
   <entry>
     <title>Call_Apply_Bind三者区别</title>
