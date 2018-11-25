@@ -23,5 +23,9 @@ categories: IIS
     6.主机名为域名,可不填
     7.启动服务后即可在PC端与手机端输入ip地址与端口号同时浏览网站进行调试
 ## 基本流程图
-![IIS流程图]()
-
+![IIS流程图](https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/IIS.png)
+## 实现效果
+* PC端
+![PC](https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PC.png)
+* 手机端
+![PHONE](https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PHONE.jpg)
