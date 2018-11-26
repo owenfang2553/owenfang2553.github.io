@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[客户端和服务器端交互模型]]></title>
+    <url>%2F2018%2F11%2F26%2F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[当我们在浏览器中输入一个地址，到最后看到页面，中间都经历了哪些事情？假设我们访问的是https://www.baidu.com/这个地址，当我们摁下Enter键，我们可以看到百度首页： 百度首页并没有在我们客户端本地，我们输入地址后才请求过来 输入不同的域名可以看到不同的页面 有的网址是https，有的是http(或者还有ftp) 需要客户端联网才能完成这些事情 那期间究竟经历了哪些事呢？以下进行简单概述 [Request请求阶段] 首先根据客户端输入的域名，到DNS服务器上进行反解析(通过域名找到对应服务器的外网IP) 通过找到的外网IP，找到对应的服务器 通过在地址中输入的端口号(没输入是因为不同协议有自己默认的端口号)找到服务器上发布的对应项目[Response响应阶段] 服务器获取到请求的资源文件的地址例如:/stu/index.html,把资源文件中的源代码找到 服务器会把找到的源代码返回给客户端(通过HTTP等传输协议返回)[浏览器自主渲染] 客户端接收到源代码后交给浏览器的内核(渲染引擎)进行渲染,最后又浏览器绘制出对应的页面]]></content>
+      <categories>
+        <category>Ajax</category>
+      </categories>
+      <tags>
+        <tag>Ajax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git总结]]></title>
     <url>%2F2018%2F11%2F25%2FGit%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[概念理解 index暂存(又名staging area–暂存区) 暂存区是可以设置哪些变更要提交到版本库，哪些先不提交。临时存放的地方（staging area）。 work area–工作区 我们工作的区域空间 local repository–本地仓库 就是我们自己工作的电脑上保存版本数据的地方 remote repository–远程仓库 我们用Git进行操作，为了防止数据在自己电脑上丢失，比如错误删除，病毒攻击等原因造成了数据丢失，我们需要备份到远程的服务器上，这个服务器可以理解为远程仓库。 生成SSH Key 在用户目录下查看是否有.ssh目录若有则查看目录下是否有id_rsa（密钥）和id_rsa.pub（公钥）若有则不必再次生成直接使用 创建SSH Key：ssh-keygen -t rsa -C “851580041@qq.com“ 登录到代码托管平台(如github)打开账户设置中的SSHKey页面粘贴公钥 可添加多个key(只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了)使用流程 [workspace] -&gt; add -&gt; [local cache] -&gt; commit -&gt;[local repository] -&gt; push -&gt;[remote git repository]-&gt; clone -&gt; [git repository] checkout -&gt; [workspace]常用操作本地初始化关联远程仓库12345678910git config --global user.name &apos;nick&apos;git config --global user.email &apos;851580041@qq.com&apos;git init gitlearn # 初始化项目git status # 查看状态git add 1.txt # 添加修改到本地缓存git add -A # 添加所有到本地缓存git commit -am &apos;1.txt&apos; # 添加提交到本地仓库git remote add origin https://github.com/csy512889371/gitlearn.git #添加远程仓库git remote #查看远程git push origin master -u 克隆及更新12git clone https://github.com/example/example.git #克隆项目git pull # 拉取代码 分支管理查看切换合并12345678git branch [-v] # 查看当前分支git branch &lt;branch name&gt;# 基于当前分支新建分支git branch &lt;branch name&gt; &lt;commit id&gt;# 基于提交新建分支git checkout &lt;branch name&gt; #切换分支git merge &lt;merge target&gt; #用于合并指定分支到当前分支# 解决冲突，如果因冲突导致自动合并失败，此时status为mergeing状态# 需要手动修改后重新提交(commit) 创建删除分支12345678910git branchgit branch -agit branch dev #创建分支devgit checkout dev #切换到dev分支git branch -d dev #删除分支git branch -D 强行删除未合并的分支git push origin dev -u #将分支提交到远程服务器git branch -avgit branch -avv 提交代码冲突1234git pull# 本地合并git commit -am &apos;重新提交&apos;git push #提交到服务器 如果本地项目和远程都有项目且未做关联12git branch --set-upstream-to=origin/master mastergit pull --allow-unrelated-histories 合并时强制禁用Fast forward123456789101112首先，仍然创建并切换dev分支：git checkout -b dev修改readme.md文件，并提交一个新的commit：git add readme.mdgit commit -m &quot;add merge&quot;现在，我们切换回master：git checkout master准备合并dev分支，请注意--no-ff参数，表示禁用Fast forward：git merge --no-ff -m &quot;merge with no-ff&quot; devgit merge –no-ff 可以保存你之前的分支历史。能够更好的查看 merge历史，以及branch 状态。git merge 则不会显示 feature，只保留单条分支记录。 标签1234567git tag v1.0 #创建标签git tag #标签状态git push origin v1.0 -u #提交标签到远程仓库git tag -d v1.0 #删除标签git branch v1.0_dev v1.0 #基于标签创建分支git log #查看日志 标签管理（标签也是版本库的一个快照）1234567891011121314151617命令git tag &lt;tagname&gt;用于新建一个标签，默认为HEAD，也可以指定一个commit id。git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;可以指定标签信息。还可以通过-s用私钥签名一个标签：git tag -s v0.5 -m &quot;signed version 0.2 released&quot; fec145agit tag可以查看所有标签。用命令git show &lt;tagname&gt;可以查看某个标签的详细信息。如果标签打错了，也可以删除：git tag -d v0.1因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。如果要推送某个标签到远程，使用命令git push origin &lt;tagname&gt;：git push origin v1.0或者，一次性推送全部尚未推送到远程的本地标签：git push origin --tags如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：git tag -d v0.9然后，从远程删除。删除命令也是push，但是格式如下：git push origin :refs/tags/v0.9 项目目前状态1$git status//查看当前git版本库的状态 退回某个版本步骤 git log查看所有历史版本 获取某个历史版本的id git reset –hard id值 将修改提交到服务器（git push -f -u origin master）存储当前工作状态 git stash （储藏当前状态之后，就能切换到别的分支） git stash list (查看储藏状态的列表) git stash apply 储藏的名字 （回到原来的分支之后，如何恢复到之前那种混乱的工作状态）实际开发中版本控制原则 master与daily-test为只读分支 所有合并原则上不可逆 日常或紧急分支上线后就不可再使用（建议删除） master与线上完全同步 daily-test版本必须大于等于master]]></content>
@@ -137,8 +148,8 @@
         <category>Css</category>
       </categories>
       <tags>
-        <tag>Canvas</tag>
         <tag>JavaScript</tag>
+        <tag>Canvas</tag>
         <tag>Css</tag>
       </tags>
   </entry>
@@ -162,8 +173,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>Canvas</tag>
         <tag>JavaScript</tag>
+        <tag>Canvas</tag>
       </tags>
   </entry>
   <entry>
