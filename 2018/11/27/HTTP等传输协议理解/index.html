@@ -117,7 +117,7 @@
 
 
 
-  <meta name="keywords" content="IIS," />
+  <meta name="keywords" content="传输协议," />
 
 
 
@@ -130,22 +130,18 @@
 
 
 
-<meta name="description" content="建立局域网络1.手机打开热点 2.使你的笔记本连接至手机热点 3.这时手机与笔记本就已经处于同一个局域网内了 基于IIS建立本地项目服务1.打开控制面板 2.点击程序 3.点击启用或关闭Windows功能 4.选中Internet Information Services(IIS)--不必全选默认方块状态就可以了 5.确定后会进行功能应用 IIS管理器基础设置1.本地搜索并打开IIS管理器 2.在">
-<meta name="keywords" content="IIS">
+<meta name="description" content="URL、URI、URN URL:统一资源标识符 URI:统一资源路径地址 URN:统一资源名称 URI=URL+URN  一个完整的URL包含很多部分http://fanguvw.xyz/index.html?name=fang&amp;amp;age=22#good 传输协议传输协议是用来完成客户端和服务器端的数据(内容)传输,类似于快递小哥,负责把客户和商家的物品来回传送  客户端不仅可以向服务器发送">
+<meta name="keywords" content="传输协议">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IIS实现局域网联调">
-<meta property="og:url" content="http://fanguvw.xyz/2018/11/25/IIS实现局域网联调/index.html">
+<meta property="og:title" content="HTTP等传输协议理解">
+<meta property="og:url" content="http://fanguvw.xyz/2018/11/27/HTTP等传输协议理解/index.html">
 <meta property="og:site_name" content="Fang&#39;Blog">
-<meta property="og:description" content="建立局域网络1.手机打开热点 2.使你的笔记本连接至手机热点 3.这时手机与笔记本就已经处于同一个局域网内了 基于IIS建立本地项目服务1.打开控制面板 2.点击程序 3.点击启用或关闭Windows功能 4.选中Internet Information Services(IIS)--不必全选默认方块状态就可以了 5.确定后会进行功能应用 IIS管理器基础设置1.本地搜索并打开IIS管理器 2.在">
+<meta property="og:description" content="URL、URI、URN URL:统一资源标识符 URI:统一资源路径地址 URN:统一资源名称 URI=URL+URN  一个完整的URL包含很多部分http://fanguvw.xyz/index.html?name=fang&amp;amp;age=22#good 传输协议传输协议是用来完成客户端和服务器端的数据(内容)传输,类似于快递小哥,负责把客户和商家的物品来回传送  客户端不仅可以向服务器发送">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/IIS.png">
-<meta property="og:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PC.png">
-<meta property="og:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PHONE.jpg">
-<meta property="og:updated_time" content="2018-11-25T13:56:56.347Z">
+<meta property="og:updated_time" content="2018-11-27T14:16:28.235Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IIS实现局域网联调">
-<meta name="twitter:description" content="建立局域网络1.手机打开热点 2.使你的笔记本连接至手机热点 3.这时手机与笔记本就已经处于同一个局域网内了 基于IIS建立本地项目服务1.打开控制面板 2.点击程序 3.点击启用或关闭Windows功能 4.选中Internet Information Services(IIS)--不必全选默认方块状态就可以了 5.确定后会进行功能应用 IIS管理器基础设置1.本地搜索并打开IIS管理器 2.在">
-<meta name="twitter:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/IIS.png">
+<meta name="twitter:title" content="HTTP等传输协议理解">
+<meta name="twitter:description" content="URL、URI、URN URL:统一资源标识符 URI:统一资源路径地址 URN:统一资源名称 URI=URL+URN  一个完整的URL包含很多部分http://fanguvw.xyz/index.html?name=fang&amp;amp;age=22#good 传输协议传输协议是用来完成客户端和服务器端的数据(内容)传输,类似于快递小哥,负责把客户和商家的物品来回传送  客户端不仅可以向服务器发送">
 
 
 
@@ -175,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="http://fanguvw.xyz/2018/11/25/IIS实现局域网联调/"/>
+  <link rel="canonical" href="http://fanguvw.xyz/2018/11/27/HTTP等传输协议理解/"/>
 
 
 
 
 
-  <title>IIS实现局域网联调 | Fang'Blog</title>
+  <title>HTTP等传输协议理解 | Fang'Blog</title>
   
 
 
@@ -352,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fanguvw.xyz/2018/11/25/IIS实现局域网联调/">
+    <link itemprop="mainEntityOfPage" href="http://fanguvw.xyz/2018/11/27/HTTP等传输协议理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Fang Zhen">
@@ -369,7 +365,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">IIS实现局域网联调</h2>
+          <h2 class="post-title" itemprop="name headline">HTTP等传输协议理解</h2>
         
 
         <div class="post-meta">
@@ -381,8 +377,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T20:58:33+08:00">
-                2018-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T15:33:05+08:00">
+                2018-11-27
               </time>
             
 
@@ -404,8 +400,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IIS/" itemprop="url" rel="index">
-                    <span itemprop="name">IIS</span>
+                  <a href="/categories/传输协议/" itemprop="url" rel="index">
+                    <span itemprop="name">传输协议</span>
                   </a>
                 </span>
 
@@ -422,8 +418,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/25/IIS实现局域网联调/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/IIS实现局域网联调/" itemprop="commentCount"></span>
+                <a href="/2018/11/27/HTTP等传输协议理解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/27/HTTP等传输协议理解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -450,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  283
+                  742
                 </span>
               
 
@@ -466,7 +462,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -487,25 +483,60 @@
       
 
       
-        <h2 id="建立局域网络"><a href="#建立局域网络" class="headerlink" title="建立局域网络"></a>建立局域网络</h2><pre><code>1.手机打开热点
-2.使你的笔记本连接至手机热点
-3.这时手机与笔记本就已经处于同一个局域网内了
-</code></pre><h2 id="基于IIS建立本地项目服务"><a href="#基于IIS建立本地项目服务" class="headerlink" title="基于IIS建立本地项目服务"></a>基于IIS建立本地项目服务</h2><pre><code>1.打开控制面板
-2.点击程序
-3.点击启用或关闭Windows功能
-4.选中Internet Information Services(IIS)--不必全选默认方块状态就可以了
-5.确定后会进行功能应用
-</code></pre><h2 id="IIS管理器基础设置"><a href="#IIS管理器基础设置" class="headerlink" title="IIS管理器基础设置"></a>IIS管理器基础设置</h2><pre><code>1.本地搜索并打开IIS管理器
-2.在右侧本地服务的网站目录上右键添加网站
-3.网站名称随意,物理路径选择你的本地项目地址
-4.IP地址为手机热点局域网地址(IP查看方式:运行CMD打开命令行-&gt;输入ipconfig-&gt;复制IPv4地址)
-5.端口号范围为1~65535(http默认80,https默认443)
-6.主机名为域名,可不填
-7.启动服务后即可在PC端与手机端输入ip地址与端口号同时浏览网站进行调试
-</code></pre><h2 id="基本流程图"><a href="#基本流程图" class="headerlink" title="基本流程图"></a>基本流程图</h2><p><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/IIS.png" alt="IIS流程图"></p>
-<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><ul>
-<li>PC端<br><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PC.png" alt="PC"></li>
-<li>手机端<br><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/PHONE.jpg" alt="PHONE"></li>
+        <h2 id="URL、URI、URN"><a href="#URL、URI、URN" class="headerlink" title="URL、URI、URN"></a>URL、URI、URN</h2><ul>
+<li>URL:统一资源标识符</li>
+<li>URI:统一资源路径地址</li>
+<li>URN:统一资源名称</li>
+<li>URI=URL+URN</li>
+</ul>
+<p>一个完整的URL包含很多部分<br><code>http://fanguvw.xyz/index.html?name=fang&amp;age=22#good</code></p>
+<h2 id="传输协议"><a href="#传输协议" class="headerlink" title="传输协议"></a>传输协议</h2><p>传输协议是用来完成客户端和服务器端的数据(内容)传输,类似于快递小哥,负责把客户和商家的物品来回传送</p>
+<ol>
+<li>客户端不仅可以向服务器发送请求,而且还可以把一些内容传送给服务器</li>
+<li>服务器也可以把内容返回给客户端</li>
+</ol>
+<p>客户端和服务器端传输的内容总称为<code>HTTP报文</code>,这些报文信息都是基于传输协议完成传输的,客户端传递给服务器叫做请求(request),服务器返回给客户端叫做响应(response),request+response两个阶段统称为一个<code>HTTP事务</code>(事务:一件完整的事情)</p>
+<h3 id="HTTP事务"><a href="#HTTP事务" class="headerlink" title="HTTP事务"></a>HTTP事务</h3><ol>
+<li>当客户端向服务器端发送请求,此时客户端和服务器端会建立一个传输通道(连接通道),传输协议就是基于这个通道把信息进行传输</li>
+<li>当服务器端接受到请求信息,把内容返回给客户端后,传输通道会自动销毁关闭<h3 id="传输协议分类"><a href="#传输协议分类" class="headerlink" title="传输协议分类"></a>传输协议分类</h3></li>
+</ol>
+<ul>
+<li>HTTP：超文本传输协议(客户端和服务器端传输的内容除了文本以外,还可以传输图片、音频等文件[二进制编码/base64码],以及传输xml格式的数据等),是目前应用最广泛的传输协议</li>
+<li>HTTPS：http+ssl,它比http更加安全,因为数据内容的传输通道时经过ssl加密的(它需要再服务器端进行特殊的处理),所以涉及资金类的网址一般都时https协议</li>
+<li>FTP：资源文件传输协议,一般用于客户端把资源文件(不是代码)上传到服务器,或者从服务器端下载一些资源文件(一般传输的内容会比http这类协议传输内容多)</li>
+<li>……<h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3></li>
+<li><p>起始行</p>
+<ol>
+<li>请求起始行</li>
+<li>响应起始行</li>
+</ol>
+</li>
+<li>首部(头)<ol>
+<li>请求头：内置请求头、自定义请求头</li>
+<li>响应头：内置响应头、自定义响应头</li>
+<li>通用头：请求和响应都有的</li>
+</ol>
+</li>
+<li>主体<ol>
+<li>请求主体</li>
+<li>响应主体</li>
+</ol>
+</li>
+<li>请求XXX都是客户端设置的信息,服务器端获取这些信息</li>
+<li>响应XXX都是服务器端设置的信息,客户端用来接受这些信息</li>
+<li>在谷歌浏览器控制台Network选项中,我们可以看见当前客户端和服务器端交互的全部信息<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4></li>
+<li>客户端传递给服务器端数据<ol>
+<li>URL问号传递参数</li>
+<li>设置请求头</li>
+<li>设置请求主体</li>
+</ol>
+</li>
+<li>服务器端返回给客户端内容<ol>
+<li>设置响应头(例如服务器时间)</li>
+<li>设置响应主体</li>
+<li>……</li>
+</ol>
+</li>
 </ul>
 
       
@@ -564,7 +595,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://fanguvw.xyz/2018/11/25/IIS实现局域网联调/" title="IIS实现局域网联调">http://fanguvw.xyz/2018/11/25/IIS实现局域网联调/</a>
+    <a href="http://fanguvw.xyz/2018/11/27/HTTP等传输协议理解/" title="HTTP等传输协议理解">http://fanguvw.xyz/2018/11/27/HTTP等传输协议理解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -579,7 +610,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IIS/" rel="tag"><i class="fa fa-tag"></i> IIS</a>
+            <a href="/tags/传输协议/" rel="tag"><i class="fa fa-tag"></i> 传输协议</a>
           
         </div>
       
@@ -607,8 +638,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/17/Call-Apply-Bind三者区别/" rel="next" title="Call_Apply_Bind三者区别">
-                <i class="fa fa-chevron-left"></i> Call_Apply_Bind三者区别
+              <a href="/2018/11/26/客户端和服务器端交互模型/" rel="next" title="客户端和服务器端交互模型">
+                <i class="fa fa-chevron-left"></i> 客户端和服务器端交互模型
               </a>
             
           </div>
@@ -616,10 +647,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/25/常用默认端口号/" rel="prev" title="常用默认端口号">
-                常用默认端口号 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -829,7 +856,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立局域网络"><span class="nav-number">1.</span> <span class="nav-text">建立局域网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于IIS建立本地项目服务"><span class="nav-number">2.</span> <span class="nav-text">基于IIS建立本地项目服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS管理器基础设置"><span class="nav-number">3.</span> <span class="nav-text">IIS管理器基础设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本流程图"><span class="nav-number">4.</span> <span class="nav-text">基本流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现效果"><span class="nav-number">5.</span> <span class="nav-text">实现效果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#URL、URI、URN"><span class="nav-number">1.</span> <span class="nav-text">URL、URI、URN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输协议"><span class="nav-number">2.</span> <span class="nav-text">传输协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP事务"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输协议分类"><span class="nav-number">2.2.</span> <span class="nav-text">传输协议分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP报文"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">2.3.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
