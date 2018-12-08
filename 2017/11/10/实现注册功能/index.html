@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="QUZjlQENlULsAViC9aoBUBowwkjJzVYZQv3r4YSBTa8" />
+<meta name="baidu-site-verification" content="0e9VKRsRDG" />
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="true" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AJAX,数据库," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fang'Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数据库注册功能实现分析最近模仿百度云写了一套页面,先简单记录一下注册功能的实现 0.检测数据库中用户名是否已存在并将结果显示到前端（通过AJAX的GET请求,连接到PHP查询用户名页,PHP查询页内容为连接数据库并检索数据库中前端传递来的用户名是否已存在,将结果以JSON字符串对象形式返回到前端） 1.提交HTML表单数据到后台PHP获取 2.PHP获取前端表单内name属性值 3.PHP连接数据">
+<meta name="keywords" content="AJAX,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库注册用户功能实现">
+<meta property="og:url" content="http://fanguvw.xyz/2017/11/10/实现注册功能/index.html">
+<meta property="og:site_name" content="Fang&#39;Blog">
+<meta property="og:description" content="数据库注册功能实现分析最近模仿百度云写了一套页面,先简单记录一下注册功能的实现 0.检测数据库中用户名是否已存在并将结果显示到前端（通过AJAX的GET请求,连接到PHP查询用户名页,PHP查询页内容为连接数据库并检索数据库中前端传递来的用户名是否已存在,将结果以JSON字符串对象形式返回到前端） 1.提交HTML表单数据到后台PHP获取 2.PHP获取前端表单内name属性值 3.PHP连接数据">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/database.JPG">
+<meta property="og:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/reg.JPG">
+<meta property="og:updated_time" content="2018-12-08T06:39:34.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库注册用户功能实现">
+<meta name="twitter:description" content="数据库注册功能实现分析最近模仿百度云写了一套页面,先简单记录一下注册功能的实现 0.检测数据库中用户名是否已存在并将结果显示到前端（通过AJAX的GET请求,连接到PHP查询用户名页,PHP查询页内容为连接数据库并检索数据库中前端传递来的用户名是否已存在,将结果以JSON字符串对象形式返回到前端） 1.提交HTML表单数据到后台PHP获取 2.PHP获取前端表单内name属性值 3.PHP连接数据">
+<meta name="twitter:image" content="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/database.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"shrinkIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fanguvw.xyz/2017/11/10/实现注册功能/"/>
+
+
+
+
+
+  <title>数据库注册用户功能实现 | Fang'Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+  <a href="https://github.com/FangFangZhenZhen" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fang'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">心有猛虎，细嗅蔷薇。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fanguvw.xyz/2017/11/10/实现注册功能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fang Zhen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fang'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据库注册用户功能实现</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-10T22:17:33+08:00">
+                2017-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AJAX/" itemprop="url" rel="index">
+                    <span itemprop="name">AJAX</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AJAX/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/10/实现注册功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/10/实现注册功能/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据库注册功能实现分析"><a href="#数据库注册功能实现分析" class="headerlink" title="数据库注册功能实现分析"></a>数据库注册功能实现分析</h2><p>最近模仿百度云写了一套页面,先简单记录一下注册功能的实现</p>
+<pre><code>0.检测数据库中用户名是否已存在并将结果显示到前端（通过AJAX的GET请求,连接到PHP查询用户名页,PHP查询页内容为连接数据库并检索数据库中前端传递来的用户名是否已存在,将结果以JSON字符串对象形式返回到前端）
+1.提交HTML表单数据到后台PHP获取
+2.PHP获取前端表单内name属性值
+3.PHP连接数据库检测用户名是否已存在
+4.不存在则向数据库插入新用户信息
+</code></pre><p>数据库设计图<br><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/database.JPG" alt="数据库"><br>效果图如下<br><img src="https://github.com/FangFangZhenZhen/FangFangZhenZhen.github.io/raw/SourceCode/source/images/reg.JPG" alt="注册"></p>
+<h2 id="注册功能表单HTML代码"><a href="#注册功能表单HTML代码" class="headerlink" title="注册功能表单HTML代码"></a>注册功能表单HTML代码</h2><p><a href="https://github.com/FangFangZhenZhen/Example/blob/master/reg.html" target="_blank" rel="noopener">HTML完整代码</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=&quot;_san_7&quot; class=&quot;san-form&quot;  method=&quot;POST&quot;&gt;</span><br><span class="line">                               &lt;!-- 用户名 --&gt;</span><br><span class="line">                               &lt;div id=&quot;_san_9&quot; class=&quot;san-form-item san-form-item-userName&quot;&gt;</span><br><span class="line">                                   &lt;div id=&quot;_san_11&quot; class=&quot;san-form-item-content&quot;&gt;</span><br><span class="line">                                       &lt;input type=&quot;text&quot; id=&quot;_san_13&quot; name=&quot;uname&quot; placeholder=&quot;用户名&quot;&gt;</span><br><span class="line">                                       &lt;label id=&quot;_san_81&quot; class=&quot;invalid-label&quot;&gt;&lt;/label&gt;</span><br><span class="line">                                   &lt;/div&gt;</span><br><span class="line">                               &lt;/div&gt;</span><br><span class="line">                               &lt;!-- 密码 --&gt;</span><br><span class="line">                               &lt;div id=&quot;_san_15&quot; class=&quot;san-form-item san-form-item-password&quot;&gt;</span><br><span class="line">                                   &lt;div id=&quot;_san_17&quot; class=&quot;san-form-item-content&quot;&gt;</span><br><span class="line">                                       &lt;input type=&quot;password&quot; id=&quot;_san_19&quot; name=&quot;upwd&quot; placeholder=&quot;密码&quot;&gt;</span><br><span class="line">                                       &lt;label id=&quot;_san_57&quot; class=&quot;invalid-label&quot;&gt;&lt;/label&gt;</span><br><span class="line">                                   &lt;/div&gt;</span><br><span class="line">                               &lt;/div&gt;</span><br><span class="line">                               &lt;!-- 确认密码 --&gt;</span><br><span class="line">                               &lt;div id=&quot;_san_21&quot; class=&quot;san-form-item san-form-item-confirmPassword&quot;&gt;</span><br><span class="line">                                   &lt;div id=&quot;_san_23&quot; class=&quot;san-form-item-content&quot;&gt;</span><br><span class="line">                                       &lt;input type=&quot;password&quot; id=&quot;_san_25&quot; name=&quot;cpwd&quot; placeholder=&quot;确认密码&quot;&gt;</span><br><span class="line">                                       &lt;label id=&quot;_san_59&quot; class=&quot;invalid-label&quot;&gt;&lt;/label&gt;</span><br><span class="line">                                   &lt;/div&gt;</span><br><span class="line">                               &lt;/div&gt;</span><br><span class="line">                               &lt;!-- 注册 --&gt;</span><br><span class="line">                               &lt;div id=&quot;_san_41&quot; class=&quot;san-form-item&quot;&gt;</span><br><span class="line">                                   &lt;div id=&quot;_san_43&quot; class=&quot;san-form-item-content&quot;&gt;</span><br><span class="line">                                       &lt;button id=&quot;_san_45&quot; type=&quot;submit&quot; class=&quot;submit&quot;&gt;同意条款并注册&lt;/button&gt;</span><br><span class="line">                                   &lt;/div&gt;</span><br><span class="line">                               &lt;/div&gt;</span><br><span class="line">                           &lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="注册功能表单JS代码"><a href="#注册功能表单JS代码" class="headerlink" title="注册功能表单JS代码"></a>注册功能表单JS代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">// 用户名正则验证</span><br><span class="line">var userName = $(&apos;#_san_13&apos;);</span><br><span class="line">var form = $(&apos;#_san_7&apos;);</span><br><span class="line">var submit = $(&apos;#_san_45&apos;);</span><br><span class="line">var userReg = /^[A-Za-z\d_-]&#123;6,32&#125;$/; //用户名正则</span><br><span class="line">var userError = $(&apos;#_san_81&apos;); //用户名错误文本</span><br><span class="line">userName.on(&quot;keyup&quot;, function () &#123;</span><br><span class="line">    if (userReg.test(userName.val())) &#123;</span><br><span class="line">        userName.css(&quot;border-color&quot;, &quot;#ccc&quot;);</span><br><span class="line">        userError.text(&quot;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    if (!userReg.test(userName.val())) &#123;</span><br><span class="line">        userName.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">        userName.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">        userError.text(&quot;用户名长度必须是6-32个字符之间&quot;) //错误内容</span><br><span class="line">    &#125;</span><br><span class="line">    if (userName.val() == &quot;&quot;) &#123;</span><br><span class="line">        userName.css(&quot;outline&quot;, &quot;none&quot;);</span><br><span class="line">        userError.text(&quot;用户名必填&quot;)</span><br><span class="line">        userName.css(&quot;border-color&quot;, &quot;red&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 用户名数据库验证</span><br><span class="line">//1.完成用户名称的重复性验证（异步，检查数据库中是否已存在当前用户名）</span><br><span class="line">//异步请求数据，因为还要输入下面的数据，不能跳转到php页面去验证</span><br><span class="line">userName.on(&quot;blur&quot;, function () &#123;</span><br><span class="line">    //1.创建XHR对象 创建异步对象</span><br><span class="line">    var xhr = null;</span><br><span class="line">    if (window.XMLHttpRequest) &#123;</span><br><span class="line">        xhr = new XMLHttpRequest(); //标准创建</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //IE6及以下的创建方式</span><br><span class="line">        xhr = new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //2.创建请求</span><br><span class="line">    var uname = userName.val();</span><br><span class="line">    //获取输入框里的值，把用户名传到后端，再查询</span><br><span class="line">    var url = &quot;../php/check-name.php?uname=&quot; + uname;</span><br><span class="line">    xhr.open(&quot;get&quot;, url, true);</span><br><span class="line">    //查询用户名称，用get方法就行，去数据库查询，看用户名是否已经存在</span><br><span class="line">    //查询用get就行，向服务器提交数据时再用post</span><br><span class="line"></span><br><span class="line">    //3.设置回调函数，监听状态</span><br><span class="line">    //参数true，异步</span><br><span class="line"></span><br><span class="line">    xhr.onreadystatechange = function () &#123;</span><br><span class="line">        if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123;</span><br><span class="line">            //判断状态，xhr请求状态为4，表示接收响应数据成功；当status的值是200的时候，表示服务器已经正确的处理请求以及给出响应</span><br><span class="line">            var resultStr = xhr.responseText;</span><br><span class="line">          var resultJson  =JSON.parse(resultStr);</span><br><span class="line">            if (resultJson==&apos;true&apos;) &#123;</span><br><span class="line">                // userError.text(&quot;用户名可用&quot;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                form.removeAttr(&quot;action&quot;);</span><br><span class="line">                userName.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">                userName.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">                userError.text(&quot;用户名已存在&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            // console.log(resultJson==&apos;false&apos;);</span><br><span class="line">            //提示内容</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    //4.发送请求</span><br><span class="line">    xhr.send(null);</span><br><span class="line">    //get请求，参数写null</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 密码正则验证</span><br><span class="line">var pwd = $(&apos;#_san_19&apos;);</span><br><span class="line">var pwdReg = /^.*(?=.&#123;6,32&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/; //密码正则(6-32位且至少1个大写字母，1个小写字母，1个数字)</span><br><span class="line">var pwdError = $(&apos;#_san_57&apos;); //密码错误文本</span><br><span class="line">pwd.on(&quot;keyup&quot;, function () &#123;</span><br><span class="line">    if (pwdReg.test(pwd.val())) &#123; //格式正确</span><br><span class="line">        pwd.css(&quot;border-color&quot;, &quot;#ccc&quot;);</span><br><span class="line">        pwdError.text(&quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwd.val().length &lt;= 6) &#123; //格式错误</span><br><span class="line">        pwd.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">        pwd.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">        pwdError.text(&quot;密码长度必须是6-32个字符之间&quot;) //错误内容</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwd.val().length &gt; 6 &amp;&amp; (!pwdReg.test(pwd.val()))) &#123;</span><br><span class="line">        pwd.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">        pwd.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">        pwdError.text(&quot;密码必须包含数字、大小写英文字母&quot;) //错误内容</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwd.val() == &quot;&quot;) &#123; //密码为空</span><br><span class="line">        pwd.css(&quot;outline&quot;, &quot;none&quot;);</span><br><span class="line">        pwdError.text(&quot;密码必填&quot;);</span><br><span class="line">        pwd.css(&quot;border-color&quot;, &quot;red&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 确认密码验证</span><br><span class="line">var pwdCheck = $(&apos;#_san_25&apos;);</span><br><span class="line">var pwdCheckReg = /^.*(?=.&#123;6,32&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/; //密码正则(6-32位且至少1个大写字母，1个小写字母，1个数字)</span><br><span class="line">var pwdCheckError = $(&apos;#_san_59&apos;); //确认密码错误文本</span><br><span class="line">pwdCheck.on(&quot;keyup&quot;, function () &#123;</span><br><span class="line">    if (pwdCheckReg.test(pwdCheck.val()) &amp;&amp; pwdCheck.val() === pwd.val()) &#123; //确认密码正确</span><br><span class="line">        pwdCheck.css(&quot;border-color&quot;, &quot;#ccc&quot;);</span><br><span class="line">        pwdCheckError.text(&quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwdCheck.val().length &lt;= 6) &#123; //格式错误</span><br><span class="line">        pwdCheck.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">        pwdCheck.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">        pwdCheckError.text(&quot;确认密码长度必须是6-32个字符之间&quot;) //错误内容</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwdCheck.val().length &gt; 6 &amp;&amp; (!pwdCheckReg.test(pwdCheck.val()))) &#123;</span><br><span class="line">        pwdCheck.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">        pwdCheck.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">        pwdCheckError.text(&quot;确认密码必须包含数字、大小写英文字母&quot;) //错误内容</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwdCheckReg.test(pwdCheck.val()) &amp;&amp; pwdCheck.val() != pwd.val()) &#123; //确认密码正确</span><br><span class="line">        pwdCheck.css(&quot;outline&quot;, &quot;none&quot;); //去除聚焦时的边框</span><br><span class="line">        pwdCheck.css(&quot;border-color&quot;, &quot;red&quot;); //设置错误时边框</span><br><span class="line">        pwdCheckError.text(&quot;两次输入的内容不一致&quot;) //错误内容</span><br><span class="line">    &#125;</span><br><span class="line">    if (pwdCheck.val() == &quot;&quot;) &#123; //密码为空</span><br><span class="line">        pwdCheck.css(&quot;outline&quot;, &quot;none&quot;);</span><br><span class="line">        pwdCheckError.text(&quot;确认密码必填&quot;);</span><br><span class="line">        pwdCheck.css(&quot;border-color&quot;, &quot;red&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//判断是否可注册</span><br><span class="line">submit.on(&apos;mouseover&apos;, function () &#123;</span><br><span class="line">    // 满足所有规则时向后台提交数据</span><br><span class="line">    if (userReg.test(userName.val()) == true&amp;&amp;pwdReg.test(pwd.val())==true&amp;&amp;pwdCheckReg.test(pwdCheck.val())==true &amp;&amp; (pwdCheck.val() === pwd.val())==true) &#123;</span><br><span class="line">        form.attr(&quot;action&quot;, &quot;../php/reg.php&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        form.removeAttr(&quot;action&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="PHP检测数据库用户名代码"><a href="#PHP检测数据库用户名代码" class="headerlink" title="PHP检测数据库用户名代码"></a>PHP检测数据库用户名代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// 1.连接数据库</span><br><span class="line">    $conn = mysqli_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;baidu&quot;);</span><br><span class="line">    if (!$conn)&#123;</span><br><span class="line">        echo &quot;Error: Unable to connect to MySQL.&quot; . PHP_EOL;</span><br><span class="line">        echo &quot;Debugging errno: &quot; . mysqli_connect_errno() . PHP_EOL;</span><br><span class="line">        echo &quot;Debugging error: &quot; . mysqli_connect_error() . PHP_EOL;</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">// 设置编码，防止中文乱码</span><br><span class="line">    mysqli_set_charset($conn, &quot;utf8&quot;);</span><br><span class="line">// 2.接收前端传过来的uname</span><br><span class="line">    $uname=$_REQUEST[&quot;uname&quot;];</span><br><span class="line"></span><br><span class="line">// 3.拼接sql，并查询uname是否存在</span><br><span class="line">    $sql=&quot; SELECT uname FROM register WHERE uname=&apos;$uname&apos;&quot;;</span><br><span class="line">    $result=mysqli_query($conn,$sql);</span><br><span class="line">// 4.根据查询的结果输出相应</span><br><span class="line">$row=mysqli_fetch_row($result);</span><br><span class="line">  //抓取一条数据，即当前uname对应的数据</span><br><span class="line"></span><br><span class="line">    $raw_success =&apos;true&apos;;</span><br><span class="line">	$raw_fail =&apos;false&apos;;</span><br><span class="line"></span><br><span class="line">    $res_success = json_encode($raw_success);</span><br><span class="line">    $res_fail = json_encode($raw_fail);</span><br><span class="line"></span><br><span class="line">  if($row==null)&#123;</span><br><span class="line">  //如果$row为空，即数据库中没有相同的用户名存在</span><br><span class="line">  echo $res_success;</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    echo $res_fail;</span><br><span class="line">  &#125;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="PHP检测是否可注册代码"><a href="#PHP检测是否可注册代码" class="headerlink" title="PHP检测是否可注册代码"></a>PHP检测是否可注册代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 1.获取请求提交的数据</span><br><span class="line">    $uname=$_REQUEST[&quot;uname&quot;];</span><br><span class="line">    //uname值就是前端页面中name属性的值</span><br><span class="line">    $upwd=$_REQUEST[&quot;upwd&quot;];</span><br><span class="line">    //确认密码不用获取，获取一个密码就行</span><br><span class="line"></span><br><span class="line">// 2.连接到数据库</span><br><span class="line">$conn = mysqli_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;baidu&quot;);</span><br><span class="line">if (!$conn)&#123;</span><br><span class="line">    echo &quot;Error: Unable to connect to MySQL.&quot; . PHP_EOL;</span><br><span class="line">    echo &quot;Debugging errno: &quot; . mysqli_connect_errno() . PHP_EOL;</span><br><span class="line">    echo &quot;Debugging error: &quot; . mysqli_connect_error() . PHP_EOL;</span><br><span class="line">    exit;</span><br><span class="line">&#125;</span><br><span class="line">// 设置编码，防止中文乱码</span><br><span class="line">mysqli_set_charset($conn, &quot;utf8&quot;);</span><br><span class="line"></span><br><span class="line">// 3.写sql语句并执行</span><br><span class="line">$sql=&quot;INSERT INTO register (uname, upwd) VALUES (&apos;$uname&apos;,&apos;$upwd&apos;)&quot;;</span><br><span class="line">//字段值 外面用双引号，里面用单引号</span><br><span class="line">$result=mysqli_query($conn,$sql);</span><br><span class="line">//执行sql语句</span><br><span class="line"></span><br><span class="line">// 4.根据执行结果给出响应</span><br><span class="line">    if($result==true)&#123; //函数返回值</span><br><span class="line">        echo &quot;&lt;span  style=&quot;font-size:40px;color:red;&quot;&gt;注册成功&lt;/span&gt;&quot;;</span><br><span class="line">        echo &apos;&lt;a href=&quot;../html/login.html&quot; style=&quot;font-size:40px;color:red;&quot;&gt;立即登录&lt;/a&gt;&apos;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &quot;&lt;span  style=&quot;font-size:40px;color:red;&quot;&gt;注册失败&lt;/span&gt;&quot;;</span><br><span class="line">        echo &apos;&lt;a href=&quot;../html/reg.html&quot; style=&quot;font-size:40px;color:red;&quot;&gt;重新注册&lt;/a&gt;&apos;;</span><br><span class="line">    &#125;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat.jpg" alt="Fang Zhen wechat" style="width: 200px; max-width: 100%;"/>
+    <div>有事微信联系~</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>我滴要饭の账号(💚一分也是爱💚)</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Fang Zhen 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Fang Zhen 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Fang Zhen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://fanguvw.xyz/2017/11/10/实现注册功能/" title="数据库注册用户功能实现">http://fanguvw.xyz/2017/11/10/实现注册功能/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="" rel="external nofollow" target="_blank"></a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AJAX/" rel="tag"><i class="fa fa-tag"></i> AJAX</a>
+          
+            <a href="/tags/数据库/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/同步与异步编程/" rel="next" title="同步（sync）与异步(async)编程">
+                <i class="fa fa-chevron-left"></i> 同步（sync）与异步(async)编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/17/静态资源文件请求处理/" rel="prev" title="静态资源文件请求处理">
+                静态资源文件请求处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  <div>
+  
+    <div>  <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>  </div>
+
+
+
+  
+</div>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+  
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Fang Zhen" />
+            
+              <p class="site-author-name" itemprop="name">Fang Zhen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/FangFangZhenZhen" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fangzhenfangzhen@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/114300570244914503191" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/lemon_0227" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-rotate-right"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+   
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库注册功能实现分析"><span class="nav-number">1.</span> <span class="nav-text">数据库注册功能实现分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册功能表单HTML代码"><span class="nav-number">2.</span> <span class="nav-text">注册功能表单HTML代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册功能表单JS代码"><span class="nav-number">3.</span> <span class="nav-text">注册功能表单JS代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP检测数据库用户名代码"><span class="nav-number">4.</span> <span class="nav-text">PHP检测数据库用户名代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP检测是否可注册代码"><span class="nav-number">5.</span> <span class="nav-text">PHP检测是否可注册代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+       <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=86 src="//music.163.com/outchain/player?type=2&id=5281399&auto=0&height=66">
+    </iframe>
+  </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fang Zhen</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">15.6k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+
+<script type="text/javascript">
+
+window.onload=function(){
+   function NewDate(str) {
+        str = str.split('-');
+        var date = new Date();
+        date.setUTCFullYear(str[0], str[1] - 1, str[2]);
+        date.setUTCHours(0, 0, 0, 0);
+        return date;
+    }
+
+    function showsectime() {
+        var birthDay = NewDate("2018-9-9");
+        var today = new Date();
+        var timeold = today.getTime() - birthDay.getTime();
+        var sectimeold = timeold / 1000
+        var secondsold = Math.floor(sectimeold);
+        var msPerDay = 24 * 60 * 60 * 1000;
+        var e_daysold = timeold / msPerDay;
+        var daysold = Math.floor(e_daysold);
+        var e_hrsold = (daysold - e_daysold) * -24;
+        var hrsold = Math.floor(e_hrsold);
+        var e_minsold = (hrsold - e_hrsold) * -60;
+        var minsold = Math.floor((hrsold - e_hrsold) * -60);
+        var seconds = Math.floor((minsold - e_minsold) * -60).toString();
+        if(daysold<10){
+          daysold='0'+daysold;
+        }
+        if(hrsold <10){
+          hrsold='0'+hrsold;
+        }
+        if(minsold<10){
+          minsold='0'+ minsold;
+        }
+        if(seconds<10){
+          seconds='0'+seconds;
+        }
+        document.getElementById("show").innerHTML = "本站已诞生" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds +
+            "秒";
+        setTimeout(showsectime, 1000);
+    }
+    showsectime();
+}
+   
+</script>
+        
+<div class="busuanzi-count">
+ <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=66014782";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+        <div id="showtime"><span id="show"></span></div>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+  
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'euNnp7D9iJtujUME8Be4dtuo-gzGzoHsz',
+        appKey: 'kgtH3y9BH6iPbeRWW8W70WuV',
+        placeholder: '留句话给我哈~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+</html>
