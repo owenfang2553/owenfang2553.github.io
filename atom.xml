@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fanguvw.xyz/"/>
-  <updated>2018-11-27T14:16:28.235Z</updated>
+  <updated>2018-12-01T13:39:07.613Z</updated>
   <id>http://fanguvw.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端开发优化常用办法汇总</title>
+    <link href="http://fanguvw.xyz/2018/12/01/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E4%BC%98%E5%8C%96%E5%B8%B8%E7%94%A8%E5%8A%9E%E6%B3%95%E6%B1%87%E6%80%BB/"/>
+    <id>http://fanguvw.xyz/2018/12/01/前端开发优化常用办法汇总/</id>
+    <published>2018-12-01T04:51:51.000Z</published>
+    <updated>2018-12-01T13:39:07.613Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="减少HTTP请求次数或者减小请求数据的大小"><a href="#减少HTTP请求次数或者减小请求数据的大小" class="headerlink" title="减少HTTP请求次数或者减小请求数据的大小"></a>减少HTTP请求次数或者减小请求数据的大小</h2><ul><li>页面中每发送一次HTTP请求,都需要完成请求+响应这个完整的HTTP事务,会消耗一些时间,也可能会导致HTTP链接通道的堵塞,为了提高页面加载速度和运行的性能,我们应该减少HTTP请求次数和减小请求数据的大小(请求内容越大,消耗的时间越久)</li></ul><ol><li><p>采用<code>雪碧图</code>(CSS Sprite/CSS图片精灵)技术,把一些小图合并在一张大图上,使用的时候通过背景图定位,定位到具体的某一张小图上</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.pubBg</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">'../images/sprite.png'</span>) no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>:x y;<span class="comment">/*和原图大小保持一致*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">background-position</span>:x y;<span class="comment">/*通过背景定位,定位到具体的位置,展示不同的图片即可*/</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">&lt;div class="pubBg box"&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></li><li><p>真实项目中,我们最好<code>把CSS或者JS文件进行合并压缩</code>；尤其是在移动端开发的时候，如果CSS与JS内容不是很多，我们可以采取内嵌式，以此减少HTTP请求的次数，加快页面加载速度；</p></li></ol><ul><li>CSS合并成一个，JS最好也合并成一个</li><li>首先通过一些工具，(例如：webpack，gulp)把合并后的css与js压缩成xxx.min.js，减小文件的大小</li><li>服务器端开启资源文件的GZIP压缩</li><li><p>…</p><pre><code>通过一些自动化工具完成CSS以及JS的合并压缩，或者再完成LESS转CSS，ES6转ES5等操作，我们把这种自动化构建模式，称之为前端“工程化”开发</code></pre></li></ul><ol start="3"><li>采用<code>图片懒加载技术</code>，在页面开始加载的时候，不请求真实的图片地址，而是用默认图占位，当页面加载完成后，再根据相关的条件依次加载真实图片（减少页面首次加载HTTP请求的次数）</li></ol><ul><li>真实项目中，我们开始图片都不加载，页面首次加载完成，先把第一屏中可以看见的图片进行加载，随着页面滚动，再把下面区域中能够呈现出来的图片进行加载</li></ul><p>根据图片懒加载技术，我们还可以扩充出<code>数据的懒加载</code></p><ul><li>开始加载页面的时候，我们只把首屏或者前两屏的数据从服务器端开始请求（有些网站首屏数据是后台渲染好，整体返回给客户端呈现的）</li><li>当页面下拉，滚动到哪个区域，再把这个区域需要的数据进行请求（请求回来做数据绑定以及图片延迟加载等）</li><li><code>分页展示技术</code>采用的也是数据的懒加载思想实现:如果我们请求获取的数据过多，我们最好分批请求，开始只请求第一页数据，当用户点击第二页（微博是下拉到一定距离再请求第二页数据）的时候再请求第二页数据…</li></ul><ol start="15"><li>如果当前页面中出现了AUDIO或者VIDEO标签,我们最好设置他们的<code>preload=none</code>:页面加载的时候，音频资源不进行加载，播放的时候再开始加载（减少页面首次加载HTTP请求的次数）</li></ol><ul><li>preload=auto: 页面首次加载的时候就把音频资源进行加载了</li><li>preload=metadata: 页面首次加载的时候只把头部信息进行加载</li></ul><ol start="20"><li>在客户端和服务器端进行数据通信的时候，我们尽量采用<code>JSON格式进行数据传输</code></li></ol><ul><li><code>【优势】</code></li><li>JSON格式的数据，能够清晰明了的展示出数据的结构，而且也很方便我们获取和操作</li><li>相对于很早以前的XML格式传输，JSON格式的数据更加轻量化</li><li><p>客户端和服务器端都支持JSON格式数据的处理，处理起来非常方便</p><pre><code>真实项目中，并不是所有的数据都要基于JSON，我们尽可能这样做，但是对于某些特殊要求（例如：文件流的传输或者文档传输），使用JSON就不合适了</code></pre></li></ul><h2 id="关于编写代码时候的一些优化技巧"><a href="#关于编写代码时候的一些优化技巧" class="headerlink" title="关于编写代码时候的一些优化技巧"></a>关于编写代码时候的一些优化技巧</h2><ul><li>除了减少HTTP请求次数和数据大小可以优化性能，我们还可以在编写代码的时候进行一些优化，让页面的性能有所提升（有些不好的代码编写习惯，会导致页面性能消耗太大，例如：内存泄露）</li></ul><ol><li>在编写代码的时候，尽量<code>减少对DOM的操作</code>(VUE与REACT框架在这方面处理非常不错)</li></ol><ul><li>在JS中操作DOM是一个非常消耗性能的事情，但是我们又不可避免的操作DOM，我们只能尽量减少对于它的操作</li></ul><p><code>【操作DOM弊端】</code></p><ul><li>DOM存在映射机制，（JS中的DOM元素对象和页面中的DOM结构是存在映射机制的，一改则都改），这种映射机制，是浏览器按照W3C标准完成对JS语言的构建和DOM的构建（其实就是构建了一个监听机制），操作DOM是同时要修改俩个地方，相对于一些其他的JS编程来说是较消耗性能的</li><li>页面中的DOM结构改变或者样式改变，会触发浏览器的回流（浏览器会把DOM结构重新进行计算，这个操作很耗性能）和重绘（把一个元素的样式重新渲染）</li><li>…</li></ul><ol start="2"><li>编写代码的时候，更多地使用<code>异步编程</code></li></ol><p>同步编程会导致：上面的任务未完成，下面的任务也无法完成，我们开发的时候，可以把某一个区域模块都设置未异步编程，这样只要模块之间没有必然的先后顺序，都可以独立加载，不会受到上面模块的堵塞影响（用的不多）</p><ul><li>尤其是AJAX数据请求，我们一般都要使用异步编程，最好是基于<code>promise设计模式</code>进行管理（项目中经常使用fetch、axios等插件进行AJAX请求处理，因为这些插件都是基于promise设计模式对AJAX进行封装处理）</li></ul><ol start="3"><li><p>在真实项目中，我们尽可能避免一次性循环过多数据（因为循环操作是同步编程），尤其是要避免while导致的死循环操作</p></li><li><p>CSS选择器优化</p></li></ol><ul><li>尽量减少标签选择器的使用</li><li>尽可能少的使用ID选择器，多使用样式类选择器（通用性强）</li><li>减少选择器前面的前缀，例如：<code>.headBox .nav .left a{...}</code>(选择器是从右向左查找的)</li></ul><ol start="5"><li>避免使用CSS表达式</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;减少HTTP请求次数或者减小请求数据的大小&quot;&gt;&lt;a href=&quot;#减少HTTP请求次数或者减小请求数据的大小&quot; class=&quot;headerlink&quot; title=&quot;减少HTTP请求次数或者减小请求数据的大小&quot;&gt;&lt;/a&gt;减少HTTP请求次数或者减小请求数据的大小&lt;/
+      
+    
+    </summary>
+    
+      <category term="优化" scheme="http://fanguvw.xyz/categories/%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="优化" scheme="http://fanguvw.xyz/tags/%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>HTTP等传输协议理解</title>
