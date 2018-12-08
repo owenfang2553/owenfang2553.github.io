@@ -1,6 +1,6 @@
 ---
 title: AJAX兼容与惰性思想
-date: 2018-09-28 21:50:21
+date: 2017-09-28 21:50:21
 tags: Ajax
 categories: Ajax
 ---
@@ -9,10 +9,10 @@ categories: Ajax
 ### 惰性思想代码块:
 ```javascript{.line-number}
     var utils=(function(){
-        var flag="getComputedStyle" in window; //若返回true则为标准浏览器，false为IE8及以下浏览器 
+        var flag="getComputedStyle" in window; //若返回true则为标准浏览器，false为IE8及以下浏览器
         function getCss(){
             if(flag){  //因为以上已判断此浏览器结果并保存,直接使用flag而不需要用window.getComputedStyle判断
-                
+
             }else{
 
             }
@@ -21,7 +21,7 @@ categories: Ajax
             getCss:getCss;
         }
     })()
-    utils.getCss(); 
+    utils.getCss();
     utils.getCss();
     utils.getCss();
 ```
@@ -35,7 +35,7 @@ var createXHR = function () {
         // 定义一个数组用于存放创建AJAX对象的各种方法
         arr = [
             function () {
-                return new XMLHttpRequest(); //只兼容IE7及以上 
+                return new XMLHttpRequest(); //只兼容IE7及以上
             },
             // 以下三种方法兼容低版本浏览器
             function () {
@@ -54,15 +54,15 @@ var createXHR = function () {
         try {
             // 本次循环获取的方法执行没有报错：说明此方法可用，下次直接执行此小方法即可=>将createXHR重写为此小方法
             xhr = curFn();
-            createXHR = curFn;    
+            createXHR = curFn;
             flag = true; //浏览器可兼容AJAX则为true;
             break; //结束循环
         } catch (e) {
             //本次获取的方法执行报错则继续循环遍历下一个方法
         }
-        if (!flag) { 
+        if (!flag) {
             throw new Error("please updata your brower"); //浏览器不支持AJAX时抛出错误
-            
+
         }
     }
     return xhr;

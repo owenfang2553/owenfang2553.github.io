@@ -1,6 +1,6 @@
 ---
 title: Call_Apply_Bind三者区别
-date: 2018-10-17 22:12:59
+date: 2018-3-10 22:12:59
 tags: Js
 categories: Js
 ---
@@ -16,7 +16,7 @@ categories: Js
         //     console.log(this);
         // }
         // fn.call();//输出： NaN window对象 非严格模式下未指定this则默认指向window
-        // fn.call(undefined); //输出： NaN window对象  
+        // fn.call(undefined); //输出： NaN window对象
         // fn.call(null); //输出： NaN window对象
         // fn(100,200);  //输出 300  window对象 （fn为window调用）
         // fn.call(obj, 100, 200); //改变this指向，并传参
@@ -33,7 +33,7 @@ categories: Js
         //     'sex': 'man'
         // };
         // var fn = function (num1, num2) {
-        //     console.log(num1 + num2); 
+        //     console.log(num1 + num2);
         //     console.log(this);
         // }
         // fn.call(); //输出 NaN undefined
@@ -44,13 +44,13 @@ categories: Js
         // call与apply使用情况由项目决定
 ```
 ## 获取数组最大值与最小值思想
-### 思想一 
+### 思想一
 排序法（arr.sort）
 ```javascript(.line-number)
         // var arr = [12, 25, 1, 22, 8, 6, 88, 7, 9, 44];
         // arr.sort(function (a, b) {
         //     return a - b;
-        // }); //小到大排序 
+        // }); //小到大排序
         // var max = arr[arr.length - 1];
         // var min = arr[0];
         // console.log(min, max);
@@ -59,7 +59,7 @@ categories: Js
 eval() 字符串拼接实现  Math.max() Math.min()
 ```javascript(.line-number)
         // var arr = [12, 25, 1, 22, 8, 6, 88, 7, 9, 44];
-        //  var max=   Math.max(arr); //输出NaN  此方法需要一个一个写入值 
+        //  var max=   Math.max(arr); //输出NaN  此方法需要一个一个写入值
         // var max=Math.max(2,5,11,1,4); //输出：11
         // 所以需要将arr转为一个一个数传入此方法
         // var str = arr.toString(); // '12, 25, 1, 22, 8, 6, 88, 7, 9, 44'
@@ -68,7 +68,7 @@ eval() 字符串拼接实现  Math.max() Math.min()
         // // 尝试字符串拼接的思想  ->成功
         // var max = eval('Math.max(' + str + ')'); //eval('Math.max(12, 25, 1, 22, 8, 6, 88, 7, 9, 44)');
         // var min = eval('Math.min(' + str + ')'); //eval('Math.min(12, 25, 1, 22, 8, 6, 88, 7, 9, 44)');
-        // console.log(min, max);     
+        // console.log(min, max);
 ```
 ### 思想三
 假设法 假设一个为最大值或最小值 循环比较 替换值
@@ -82,7 +82,7 @@ eval() 字符串拼接实现  Math.max() Math.min()
         // console.log(min,max);
 ```
 ### 思想四
-apply(null,arr)  Math.max() Math.min(); 
+apply(null,arr)  Math.max() Math.min();
 ```javascript(.line-number)
        // var arr = [12, 25, 1, 22, 8, 6, 88, 7, 9, 44];
         // var max = Math.max.apply(null, arr);

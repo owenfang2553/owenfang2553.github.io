@@ -1,5 +1,6 @@
 ---
 title: 原生JS实现回到页面顶部
+date: 2017-8-27 15:33:05
 categories: JavaScript
 tags: JavaScript
 ---
@@ -24,7 +25,7 @@ tags: JavaScript
             function show() {
                 var dis = document.documentElement.scrollTop || document.body.scrollTop;
                 var windis = window.screen.height; //屏幕分辨率高度
-                // console.log(windis); 
+                // console.log(windis);
                 //当前滚动条距离大于一个屏幕高度时显示回到顶部按钮
                 if (dis >= windis) {
 
@@ -91,7 +92,7 @@ tags: JavaScript
                 e = e || event;
                 var elem = e.target;
                 elem.style.background = null;
-            });           
+            });
 ```
 ### 滑动模块
         1.与获取随机颜色原理相同，需要利用事件委托，通过给父元素DIV加点击事件获取目标事件
@@ -116,10 +117,10 @@ tags: JavaScript
                     var curTop = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动时当前滚动条距离
                     if (curTop === top) {
                         window.clearInterval(intn); //当两者相同时清除定时器
-                        return; //中断执行       
+                        return; //中断执行
                     }
                     if (curTop > top) {
-                        curTop -= stepgo; //使当前滚动条距离每隔frequency时间在当前距离基础上减去原始步长    
+                        curTop -= stepgo; //使当前滚动条距离每隔frequency时间在当前距离基础上减去原始步长
                     }
                     if (curTop < top) {
                         curTop += stepgo;

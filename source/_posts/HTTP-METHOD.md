@@ -1,6 +1,6 @@
 ---
 title: AJAX中的HTTP请求方式
-date: 2018-10-07 14:24:25
+date: 2017-10-07 14:24:25
 tags: AJAX
 categories: AJAX
 ---
@@ -39,7 +39,7 @@ categories: AJAX
     在项目中我们的GET请求一般不允许出现缓存 => “清除缓存” => 改变URL => 在URL末尾追加一个随机数 => xhr.open("GET","/getlist?a=2&num=5&_="+Math.random(),true);
 
 安全问题：
-    
+
     一般来说GET不安全（URL传参）,而POST相对安全
     实际当攻击者想攻击时都不安全
 
