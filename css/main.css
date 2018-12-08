@@ -2217,7 +2217,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c969e3;
+  background: #ff9199;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2785,13 +2785,6 @@ img:hover {
 .site-pv .busuanzi-value,
 .page-pv .busuanzi-value {
   margin: 0 5px;
-}
-.site-uv {
-  margin-right: 10px;
-}
-.site-uv::after {
-  content: "|";
-  padding-left: 10px;
 }
 #needsharebutton-postbottom {
   position: relative;
