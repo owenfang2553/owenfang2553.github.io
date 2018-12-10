@@ -1149,7 +1149,7 @@ js中的异步编程：1.定时器属于异步编程（到时间点
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/17/旋转的八卦图/" itemprop="url">旋转的八卦图</a></h2>
+                <a class="post-title-link" href="/2017/09/17/旋转的八卦图/" itemprop="url">Canvas实现五子棋小游戏</a></h2>
         
 
         <div class="post-meta">
@@ -1247,7 +1247,7 @@ js中的异步编程：1.定时器属于异步编程（到时间点
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  13
+                  1.7k
                 </span>
               
 
@@ -1263,7 +1263,7 @@ js中的异步编程：1.定时器属于异步编程（到时间点
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  8
                 </span>
               
             </div>
@@ -1286,8 +1286,10 @@ js中的异步编程：1.定时器属于异步编程（到时间点
       
         
           
-          利用JS或CSS3结合Canvas实现八卦图旋转
-          
+          实现过程解析
+绘制一个1024*768大小的画布，画布背景颜色填充为#e0c590
+12345678910111213141516171819&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;	&lt;meta charset="UTF-8
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/17/旋转的八卦图/#more" rel="contents">
@@ -1645,7 +1647,7 @@ js中的异步编程：1.定时器属于异步编程（到时间点
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  9
+                  1.3k
                 </span>
               
 
@@ -1661,7 +1663,7 @@ js中的异步编程：1.定时器属于异步编程（到时间点
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -1684,8 +1686,24 @@ js中的异步编程：1.定时器属于异步编程（到时间点
       
         
           
-          利用Canvas与JavaScript实现贪吃蛇
-          
+          利用Canvas与JavaScript实现贪吃蛇##实现思路
+
+先把蛇画出来
+
+
+定义一下蛇的结构，用一个数组保存一堆矩形，包含蛇头（红）和蛇身（灰）。
+画蛇（初始状态）
+
+
+蛇能动（重点）
+
+
+蛇移动方式：自始至终都只有蛇头在动
+
+画一个灰色的方块，位置与蛇头重叠
+
+将这个方块插到数组中蛇头后面一
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/贪吃蛇/#more" rel="contents">
@@ -2035,18 +2053,6 @@ js中的异步编程：1.定时器属于异步编程（到时间点
                         <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
-                  <span class="links-of-author-item">
-                    <a href="https://plus.google.com/u/0/114300570244914503191" target="_blank" title="Google">
-                      
-                        <i class="fa fa-fw fa-google"></i>Google</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://blog.csdn.net/lemon_0227" target="_blank" title="CSDN">
-                      
-                        <i class="fa fa-fw fa-rotate-right"></i>CSDN</a>
-                  </span>
-                
             </div>
           
 
@@ -2119,7 +2125,7 @@ js中的异步编程：1.定时器属于异步编程（到时间点
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.7k</span>
+    <span title="Site words total count">17.6k</span>
   
 </div>
 

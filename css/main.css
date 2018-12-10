@@ -1094,10 +1094,11 @@ pre .javascript .function {
 }
 .header {
   background: transparent;
-  height: 90px;
+  height: 60px;
 }
 .header-inner {
   position: relative;
+  padding: 10px 0 20px !important;
 }
 .headband {
   height: 3px;
@@ -2217,7 +2218,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff9199;
+  background: #95ff38;
 }
 .links-of-blogroll {
   font-size: 13px;
